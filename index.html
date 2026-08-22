@@ -119,6 +119,20 @@
   .hotspot:hover { filter: brightness(1.25); }
   .hotspot:active { transform: translate(-50%, -50%) scale(.94); }
 
+  /* ตัวเลือกที่ยังเปิดไม่ได้ (ค่ายังไม่ถึง) */
+  .hotspot.locked { cursor: not-allowed; }
+  .hotspot.locked img, .hotspot.locked .emoji {
+    animation: none;
+    filter: grayscale(1) brightness(.6);
+  }
+  .hotspot.locked .lock {
+    position: absolute;
+    top: -6%;
+    right: -8%;
+    font-size: clamp(1rem, 4.5vw, 1.5rem);
+    text-shadow: 0 0 6px #000;
+  }
+
   /* ===== ข้อความสั้นๆ ลอยล่าง (น้อยที่สุด) ===== */
   #caption {
     position: absolute;

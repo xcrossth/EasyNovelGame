@@ -1,6 +1,6 @@
-// ===== ตัวเกมหลัก (ฉบับ point-and-click ภาพล้วน) =====
+// ===== ตัวเกมหลัก (point-and-click ภาพล้วน + ระบบ requires/hidden flags) =====
 
-let flags = { warmth: 0, trust: 0 };
+let flags = { warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false };
 let currentSceneId = "start";
 let nudgeTimer = null;
 const gameEl = document.getElementById("game");
@@ -10,11 +10,15 @@ const overlayEl = document.getElementById("overlay-cold");
 const captionEl = document.getElementById("caption");
 const endingEl = document.getElementById("ending");
 
+function meetsRequirement(req) {
+  if (!req) return true;
+  return Object.keys(req).every((k) => flags[k] >= req[k]);
+}
+
 function renderHUD() {
-  document.getElementById("hud-warmth").textContent = "●".repeat(Math.max(1, Math.min(5, flags.warmth)));
-  document.getElementById("hud-trust").textContent = "●".repeat(Math.max(1, Math.min(5, flags.trust)));
-  // ยิ่งอบอุ่น ฟิล์มสีน้ำเงินหนาวยิ่งจางลง
-  const a = Math.max(0, 0.38 - flags.warmth * 0.09);
+  document.getElementById("hud-warmth").textContent = "●".repeat(Math.max(1, Math.min(7, flags.warmth)));
+  document.getElementById("hud-trust").textContent = "●".repeat(Math.max(1, Math.min(7, flags.trust)));
+  const a = Math.max(0, 0.38 - flags.warmth * 0.06);
   overlayEl.style.background = `rgba(40, 70, 120, ${a})`;
 }
 
@@ -69,8 +73,7 @@ function gotoScene(id) {
 
   (scene.actors || []).forEach((a) => {
     const el = document.createElement("div");
-    el.className = "actor" + (a.shiver ? " shiver" : "") + " fade-in";
-    if (a.shiver) el.classList.remove("fade-in"); // อย่าให้ fade ชนกับ animation สั่น
+    el.className = "actor" + (a.shiver ? " shiver" : "");
     el.style.left = a.x + "%";
     el.style.top = a.y + "%";
     el.style.width = a.w + "%";
@@ -79,31 +82,37 @@ function gotoScene(id) {
   });
 
   (scene.hotspots || []).forEach((h) => {
+    const ok = meetsRequirement(h.requires);
     const el = document.createElement("div");
-    el.className = "hotspot fade-in";
+    el.className = "hotspot" + (ok ? " fade-in" : " locked");
     el.style.left = h.x + "%";
     el.style.top = h.y + "%";
     el.style.width = h.w + "%";
-    el.innerHTML = h.img ? `<img src="${h.img}" alt="">` : `<div class="emoji">${h.icon || "❔"}</div>`;
+    el.innerHTML = h.img
+      ? `<img src="${h.img}" alt="">`
+      : `<div class="emoji">${h.icon || "❔"}</div>`;
+    if (!ok) el.innerHTML += `<div class="lock">🔒</div>`;
     el.onclick = () => {
+      if (!ok) return;
       if (h.effects) {
-        flags.warmth += h.effects.warmth || 0;
-        flags.trust += h.effects.trust || 0;
-        renderHUD();
+        flags.warmth = Math.max(0, flags.warmth + (h.effects.warmth || 0));
+        flags.trust = Math.max(0, flags.trust + (h.effects.trust || 0));
       }
+      if (h.set) Object.assign(flags, h.set);
+      renderHUD();
       gotoScene(h.next);
     };
     gameEl.appendChild(el);
   });
 
-  // ถ้าผู้เล่นเฉยๆ นาน 8 วิ ให้วัตถุกระพริบเตือน
   nudgeTimer = setTimeout(() => {
-    gameEl.querySelectorAll(".hotspot").forEach((el) => el.classList.add("nudge"));
+    gameEl.querySelectorAll(".hotspot:not(.locked)").forEach((el) => el.classList.add("nudge"));
   }, 8000);
 }
 
 function restart() {
-  flags = { warmth: 0, trust: 0 };
+  flags = { warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false };
+  bgEl.src = "assets/bg-house-portrait.png";
   renderHUD();
   gotoScene("start");
 }
