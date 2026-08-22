@@ -212,6 +212,114 @@
   @keyframes fall {
     to { transform: translateY(110vh) translateX(6vw); }
   }
+
+  /* ===== เอฟเฟกต์บรรยากาศ ===== */
+  .fx { position: absolute; inset: 0; pointer-events: none; }
+
+  /* ประกายไฟลอยจากกองไฟ */
+  .ember {
+    position: absolute;
+    bottom: -2vh;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #ffb347;
+    box-shadow: 0 0 8px 2px rgba(255,150,50,.8);
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    to { transform: translateY(-105vh) translateX(4vw); opacity: 0; }
+  }
+
+  /* หมอกลอย */
+  .fog {
+    position: absolute;
+    width: 120%; height: 40%;
+    left: -30%;
+    background: radial-gradient(ellipse at center, rgba(200,215,235,.28), transparent 70%);
+    animation: drift 16s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    from { transform: translateX(-8%) translateY(0); }
+    to   { transform: translateX(8%) translateY(6%); }
+  }
+
+  /* แสงไฟ/เทียนวูบ */
+  .flicker {
+    background: radial-gradient(ellipse at 50% 75%, rgba(255,170,80,.22), transparent 65%);
+    animation: flick 2.4s ease-in-out infinite;
+    mix-blend-mode: screen;
+  }
+  @keyframes flick {
+    0%, 100% { opacity: .55; }
+    20% { opacity: .85; }
+    45% { opacity: .4; }
+    70% { opacity: .95; }
+  }
+
+  /* ลม — เส้นพาดจางๆ พัดผ่าน */
+  .wind-line {
+    position: absolute;
+    height: 2px;
+    width: 30%;
+    left: -35%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+    animation: gust linear infinite;
+  }
+  @keyframes gust {
+    to { transform: translateX(420%); }
+  }
+
+  /* ฝุ่นในลำแสง */
+  .dust {
+    position: absolute;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(255,240,210,.6);
+    animation: float-dust ease-in-out infinite alternate;
+  }
+  @keyframes float-dust {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(3vw, -4vh); }
+  }
+
+  /* ไอน้ำ */
+  .steam {
+    position: absolute;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.35), transparent 70%);
+    animation: steam-rise ease-out infinite;
+  }
+  @keyframes steam-rise {
+    from { transform: translateY(0) scale(.6); opacity: .5; }
+    to   { transform: translateY(-30vh) scale(1.8); opacity: 0; }
+  }
+
+  /* กลีบดอกไม้ตก (ฉากฤดูใบไม้ผลิ) */
+  .petal {
+    position: absolute;
+    top: -5vh;
+    width: 8px; height: 8px;
+    background: #ffd9e8;
+    border-radius: 60% 40% 55% 45%;
+    opacity: .85;
+    animation: petal-fall linear infinite;
+  }
+  @keyframes petal-fall {
+    to { transform: translateY(110vh) translateX(-8vw) rotate(320deg); }
+  }
+
+  /* จอสั่น (ฉากพายุ) */
+  .shake-screen { animation: quake 3.5s ease-in-out infinite; }
+  @keyframes quake {
+    0%, 100% { transform: translate(0, 0); }
+    8%  { transform: translate(2px, -2px); }
+    16% { transform: translate(-2px, 1px); }
+    24% { transform: translate(0, 0); }
+    55% { transform: translate(1px, 2px); }
+    63% { transform: translate(-1px, -1px); }
+    70% { transform: translate(0, 0); }
+  }
 </style>
 </head>
 <body>
