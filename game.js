@@ -30,7 +30,7 @@ const GAMES = {
     compute: (f) => computeEnding(f),
     start: "start",
     flags0: () => ({ warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false }),
-    hud: [["🔥", "warmth"], ["💛", "trust"]],
+    hud: [["assets/ui/flame.png", "warmth"], ["assets/ui/heart.png", "trust"]],
     dotsMax: 8,
     coldOverlay: true,
     bgDefault: "assets/bg-house-portrait.png",
@@ -48,7 +48,7 @@ const GAMES = {
     compute: (f) => computeEnding2(f),
     start: "s2_start",
     flags0: () => ({ dignity: 0, clue: 0, hasPhoto: false, hasDoc: false, maliSuspects: false, knowsTruth: false, withTheeradech: false }),
-    hud: [["👑", "dignity"], ["🔍", "clue"]],
+    hud: [["assets/ui/crown.png", "dignity"], ["assets/ui/magnifier.png", "clue"]],
     dotsMax: 8,
     coldOverlay: false,
     bgDefault: "assets/s2/foyer.png",
@@ -99,8 +99,9 @@ function meetsRequirement(req) {
 function renderHUD() {
   if (!S) return;
   const [[i1, k1], [i2, k2]] = S.hud;
-  hud1El.innerHTML = i1 + '<span class="dots">' + "●".repeat(Math.max(1, Math.min(S.dotsMax, flags[k1]))) + "</span>";
-  hud2El.innerHTML = i2 + '<span class="dots">' + "●".repeat(Math.max(1, Math.min(S.dotsMax, flags[k2]))) + "</span>";
+  const dots = (k) => '<span class="dots">' + "●".repeat(Math.max(1, Math.min(S.dotsMax, flags[k]))) + "</span>";
+  hud1El.innerHTML = `<img class="hud-ic" src="${i1}" alt="">` + dots(k1);
+  hud2El.innerHTML = `<img class="hud-ic" src="${i2}" alt="">` + dots(k2);
   if (S.coldOverlay) {
     const a = Math.max(0, 0.38 - flags.warmth * 0.05);
     overlayEl.style.background = `rgba(40, 70, 120, ${a})`;
@@ -238,12 +239,17 @@ function setBgm(key) {
   bgmAudio.src = BGM[key];
   bgmAudio.play().catch(() => {});
 }
-document.getElementById("mute").onclick = () => {
+const muteBtn = document.getElementById("mute");
+function renderMuteIcon() {
+  muteBtn.innerHTML = `<img class="hud-ic" src="assets/ui/${muted ? "sound-off" : "sound-on"}.png" alt="">`;
+}
+muteBtn.onclick = () => {
   muted = !muted;
-  document.getElementById("mute").textContent = muted ? "🔇" : "🔊";
+  renderMuteIcon();
   if (muted) bgmAudio.pause();
   else bgmAudio.play().catch(() => {});
 };
+renderMuteIcon();
 document.body.addEventListener("pointerdown", () => {
   if (!muted && !currentBgmKey && S) setBgm(S.bgm[currentSceneId] || S.bgmDefault || "main");
   else if (!muted && bgmAudio.paused) bgmAudio.play().catch(() => {});
@@ -371,13 +377,17 @@ function gotoScene(id) {
     const text = document.createElement("div");
     text.textContent = e.text;
     const btn = document.createElement("button");
-    btn.textContent = "🔄 อีกครั้ง";
+    btn.className = "end-btn primary";
+    btn.innerHTML = '<img src="assets/ui/retry.png" alt=""><span>เล่นอีกครั้ง</span>';
     btn.onclick = restart;
     const home = document.createElement("button");
-    home.style.background = "rgba(255,255,255,.14)";
-    home.textContent = "🏠 เลือกเรื่องอื่น";
+    home.className = "end-btn";
+    home.innerHTML = '<img src="assets/ui/home.png" alt=""><span>เลือกเรื่องอื่น</span>';
     home.onclick = showMenu;
-    endingEl.append(title, text, btn, home);
+    const btnRow = document.createElement("div");
+    btnRow.className = "end-btns";
+    btnRow.append(btn, home);
+    endingEl.append(title, text, btnRow);
     return;
   }
 

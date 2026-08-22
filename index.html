@@ -325,18 +325,36 @@
     white-space: pre-wrap;
   }
   #ending .title { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
-  #restart {
-    background: var(--accent);
-    color: #1a1409;
-    border: none;
-    padding: 12px 34px;
-    border-radius: 999px;
+  /* ปุ่มหน้าจบเรื่อง */
+  .end-btns { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .end-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    min-width: 240px;
+    justify-content: center;
+    border-radius: 14px;
     font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
+    font-weight: 600;
     font-family: inherit;
+    color: var(--text);
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.22);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: transform .12s, background .15s, border-color .15s;
   }
-  #restart:hover { filter: brightness(1.1); }
+  .end-btn img { width: 26px; height: 26px; object-fit: contain; }
+  .end-btn.primary {
+    background: linear-gradient(135deg, #e8a04c, #d4822f);
+    color: #241505;
+    border: none;
+    box-shadow: 0 4px 18px rgba(232,160,76,.35);
+  }
+  .end-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.18); }
+  .end-btn.primary:hover { background: linear-gradient(135deg, #f0b26a, #e09040); }
+  #hud .hud-ic { width: 22px; height: 22px; object-fit: contain; vertical-align: middle; }
   .fade-in { animation: fadeIn .6s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   /* หิมะตก */
