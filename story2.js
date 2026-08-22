@@ -15,9 +15,9 @@ const STORY2 = {
 
 แต่บางคืน ฝนตกหนักแบบนี้... ฉันก็ยังรู้สึกว่ามีอะไรบางอย่างในบ้านหลังนี้ มัน "ผิด" มาตลอด`,
     hotspots: [
-      { img: "assets/obj-food.png", x: 26, y: 74, w: 16, next: "s2_e1_chores", set: {} },
-      { img: "assets/obj-candle.png", x: 50, y: 78, w: 12, next: "s2_e1_intro2" },
-      { img: "assets/obj-letter.png", x: 74, y: 74, w: 16, next: "s2_e1_intro2" },
+      { img: "assets/s2/item-tray.png", x: 26, y: 74, w: 18, next: "s2_e1_chores", set: {} },
+      { img: "assets/s2/item-photo.png", x: 50, y: 78, w: 16, next: "s2_e1_intro2" },
+      { img: "assets/s2/item-file.png", x: 74, y: 74, w: 16, next: "s2_e1_intro2" },
     ],
   },
 
@@ -31,7 +31,7 @@ const STORY2 = {
 
 และ "คุณหลี" คงต้องการน้ำชาตื่นเช้าตรงเวลาเป็นทุนเดิม`,
     hotspots: [
-      { img: "assets/obj-food.png", x: 50, y: 78, w: 16, next: "s2_e1_mali" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 78, w: 18, next: "s2_e1_mali" },
     ],
   },
 
@@ -61,8 +61,8 @@ const STORY2 = {
     actors: [{ img: "assets/s2/ch-mali.png", x: 50, y: 55, w: 34 }],
     hotspots: [
       { img: "assets/obj-heart.png", x: 26, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e1_mali_calm" },
-      { img: "assets/obj-money.png", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e1_mali_fight" },
-      { img: "assets/obj-candle.png", x: 74, y: 78, w: 12, next: "s2_e1_mali_silent" },
+      { img: "assets/s2/item-hand.png", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e1_mali_fight" },
+      { img: "assets/s2/item-phone.png", x: 74, y: 78, w: 12, next: "s2_e1_mali_silent" },
     ],
   },
 
@@ -77,7 +77,7 @@ const STORY2 = {
 คุณหญิงบุญเรือน — นั่งรถเข็น ถูกยกผ่านประตูเข้ามา ตาคมกริบมองมาลีรัตน์ตรงๆ`,
     actors: [{ img: "assets/s2/ch-khunying.png", x: 50, y: 55, w: 40 }],
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, next: "s2_e1_khunying" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, next: "s2_e1_khunying" },
     ],
   },
 
@@ -92,7 +92,7 @@ const STORY2 = {
 "หยุด." เสียงเด็ดขาดดังมาจากประตู คุณหญิงบุญเรือนนั่งรถเข็นมองอยู่นานแล้ว`,
     actors: [{ img: "assets/s2/ch-khunying.png", x: 50, y: 55, w: 40 }],
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, next: "s2_e1_khunying" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, next: "s2_e1_khunying" },
     ],
   },
 
@@ -107,7 +107,7 @@ const STORY2 = {
 "ถ้ามันหายจริง ก็เรียกตำรวจมาเปิดกล้องวงจรปิดสิ" คุณหญิงบุญเรือนพูด "หรือหลานสึก... กลัวอะไรอยู่?"`,
     actors: [{ img: "assets/s2/ch-khunying.png", x: 50, y: 55, w: 40 }],
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, next: "s2_e1_khunying" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, next: "s2_e1_khunying" },
     ],
   },
 
@@ -222,7 +222,7 @@ const STORY2 = {
     actors: [{ img: "assets/s2/ch-mali.png", x: 50, y: 55, w: 34 }],
     hotspots: [
       { img: "assets/obj-heart.png", x: 26, y: 78, w: 14, effects: { dignity: 1, clue: 1 }, next: "s2_e2_confront" },
-      { img: "assets/obj-candle.png", x: 50, y: 78, w: 12, next: "s2_e2_confront" },
+      { img: "assets/s2/item-phone.png", x: 50, y: 78, w: 12, next: "s2_e2_confront" },
       { img: "assets/obj-door.png", x: 74, y: 78, w: 18, next: "s2_e2_walkaway" },
     ],
   },
@@ -305,7 +305,7 @@ const STORY2 = {
     hotspots: [
       { img: "assets/obj-box.png", x: 26, y: 78, w: 18, next: "s2_e3_give" },
       { img: "assets/obj-heart.png", x: 50, y: 80, w: 14, effects: { dignity: 2 }, next: "s2_e3_refuse" },
-      { img: "assets/obj-candle.png", x: 74, y: 78, w: 12, effects: { clue: 1 }, next: "s2_e3_lie" },
+      { img: "assets/s2/item-tray.png", x: 74, y: 78, w: 12, effects: { clue: 1 }, next: "s2_e3_lie" },
     ],
   },
 
@@ -322,7 +322,7 @@ const STORY2 = {
 เธอกำลังข้อความหาใครบางคน: "จัดการคนขับคนเก่าให้เรียบร้อย"`,
     actors: [{ img: "assets/s2/ch-madam.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, effects: { clue: 1 }, next: "s2_e3_rain" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, effects: { clue: 1 }, next: "s2_e3_rain" },
     ],
   },
 
@@ -339,7 +339,7 @@ const STORY2 = {
 "งั้นเหรอ... งั้นก็ตามใจหนูสิ"`,
     actors: [{ img: "assets/s2/ch-madam.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, next: "s2_e3_rain" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, next: "s2_e3_rain" },
     ],
   },
 
@@ -356,7 +356,7 @@ const STORY2 = {
 และมันก็ทำให้ฉันแน่ใจขึ้นอีกนิดว่า — เธอรู้อะไรบางอย่างเกี่ยวกับตอนฉันเกิด`,
     actors: [{ img: "assets/s2/ch-madam.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, effects: { clue: 1 }, next: "s2_e3_rain" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, effects: { clue: 1 }, next: "s2_e3_rain" },
     ],
   },
 
@@ -390,7 +390,7 @@ const STORY2 = {
 
 "...เรื่องมันจะยุ่งกว่าที่คิดนะสิ หนูหนึ่งฤทัยเนี่ย"`,
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, next: "s2_e3_cliff" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, next: "s2_e3_cliff" },
     ],
   },
 
@@ -406,7 +406,7 @@ const STORY2 = {
 
 มาดามศิริกัดฟันแน่น — เธอรู้ว่าถ้าเรื่องไปถึงตำรวจจริง มันจะไม่ได้จบแค่เรื่องแหวน`,
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, effects: { dignity: 1 }, next: "s2_e3_cliff" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, effects: { dignity: 1 }, next: "s2_e3_cliff" },
     ],
   },
 
@@ -455,7 +455,7 @@ const STORY2 = {
     hotspots: [
       { img: "assets/obj-heart.png", x: 26, y: 78, w: 14, effects: { dignity: 1 }, next: "s2_e4_talk" },
       { img: "assets/s2/item-file.png", x: 50, y: 80, w: 16, effects: { clue: 1 }, next: "s2_e4_talk" },
-      { img: "assets/obj-candle.png", x: 74, y: 78, w: 12, next: "s2_e4_talk" },
+      { img: "assets/s2/item-tray.png", x: 74, y: 78, w: 12, next: "s2_e4_talk" },
     ],
   },
 
@@ -510,7 +510,7 @@ const STORY2 = {
     actors: [{ img: "assets/s2/ch-theeradech.png", x: 50, y: 55, w: 34 }],
     hotspots: [
       { img: "assets/obj-heart.png", x: 26, y: 78, w: 14, effects: { dignity: 2, clue: 1 }, set: { withTheeradech: true }, next: "s2_e4_cliff" },
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, effects: { dignity: 1 }, next: "s2_e4_independent" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, effects: { dignity: 1 }, next: "s2_e4_independent" },
     ],
   },
 
@@ -525,7 +525,7 @@ const STORY2 = {
 ธีรเดชขมวดคิ้วแล้วหัวเราะเสียงแรก — "นี่แหละ... ถึงจะคุ้มค่าที่ผมรอมาสิบปี"`,
     actors: [{ img: "assets/s2/ch-theeradech.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/obj-candle.png", x: 50, y: 80, w: 12, next: "s2_e4_cliff" },
+      { img: "assets/s2/item-tray.png", x: 50, y: 80, w: 12, next: "s2_e4_cliff" },
     ],
   },
 
