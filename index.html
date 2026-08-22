@@ -122,11 +122,11 @@
     0%, 100% { filter: drop-shadow(0 0 6px rgba(255,210,122,.45)); }
     50%      { filter: drop-shadow(0 0 18px rgba(255,210,122,.95)); }
   }
-  /* idle นานเกินไป → กระพริบเตือน */
-  .hotspot.nudge img, .hotspot.nudge .emoji { animation: nudge 1s infinite; }
+  /* idle นานเกินไป → กระพริบเตือน (ช้า นุ่ม) */
+  .hotspot.nudge img, .hotspot.nudge .emoji { animation: nudge 2.2s infinite; }
   @keyframes nudge {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: .35; transform: scale(1.12); }
+    50%      { opacity: .7; transform: scale(1.14); }
   }
   .hotspot:hover { filter: brightness(1.25); }
   .hotspot:active { transform: translate(-50%, -50%) scale(.94); }

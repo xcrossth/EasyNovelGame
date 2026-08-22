@@ -400,7 +400,7 @@ function gotoScene(id) {
 
     nudgeTimer = setTimeout(() => {
       gameEl.querySelectorAll(".hotspot:not(.locked)").forEach((el) => el.classList.add("nudge"));
-    }, 8000);
+    }, 15000);
   });
 }
 
