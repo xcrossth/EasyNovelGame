@@ -314,6 +314,36 @@ function restart() {
   gotoScene(S.start);
 }
 
+// ===== ระบบกันไอคอนซ้อนกัน: ถ้าตำแหน่งที่ประกาศชนตัวละคร/ไอคอนอื่น ให้ย้ายไปช่องว่างใกล้ๆ =====
+function boxCollides(cx, cy, hw, hh, boxes) {
+  for (const b of boxes) {
+    const ox = Math.min(cx + hw, b.cx + b.hw) - Math.max(cx - hw, b.cx - b.hw);
+    const oy = Math.min(cy + hh, b.cy + b.hh) - Math.max(cy - hh, b.cy - b.hh);
+    if (ox > 5 && oy > 4) return true;
+  }
+  return false;
+}
+function layoutHotspots(hotspots, actors) {
+  const obstacles = actors.map((a) => ({
+    cx: a.x, cy: Math.min(a.y, 76), hw: a.w / 2, hh: (a.w * 1.4) / 2,
+  }));
+  const placed = [];
+  const result = [];
+  const SLOTS = [[22, 72], [78, 72], [50, 80], [26, 62], [74, 62], [50, 56], [12, 80], [88, 80], [20, 28], [80, 28]];
+  for (const h of hotspots) {
+    let x = h.x, y = Math.min(h.y, 82);
+    const hw = h.w / 2, hh = (h.w * 0.5625) / 2 + 2;
+    if (boxCollides(x, y, hw, hh, placed.concat(obstacles))) {
+      for (const [sx, sy] of SLOTS) {
+        if (!boxCollides(sx, sy, hw, hh, placed.concat(obstacles))) { x = sx; y = sy; break; }
+      }
+    }
+    placed.push({ cx: x, cy: y, hw, hh });
+    result.push({ x, y });
+  }
+  return result;
+}
+
 // ===== ฉากหลัก =====
 function gotoScene(id) {
   currentSceneId = id;
@@ -371,12 +401,15 @@ function gotoScene(id) {
     // จบตอน → การ์ดคลิฟแฮงเกอร์
     if (scene.epEnd) { showEpisodeCard(scene.epEnd, scene.epEnd.next); return; }
 
-    (scene.hotspots || []).forEach((h) => {
+    const hotspotPos = layoutHotspots(scene.hotspots || [], scene.actors || []);
+
+    (scene.hotspots || []).forEach((h, hi) => {
       const ok = meetsRequirement(h.requires);
+      const pos = hotspotPos[hi];
       const el = document.createElement("div");
       el.className = "hotspot" + (ok ? " fade-in" : " locked");
-      el.style.left = h.x + "%";
-      el.style.top = Math.min(h.y, 82) + "%";
+      el.style.left = pos.x + "%";
+      el.style.top = Math.min(pos.y, 82) + "%";
       el.style.width = h.w + "%";
       el.innerHTML = h.img
         ? `<img src="${h.img}" alt=""><div class="lbl">${hotspotLabel(h)}</div>`
