@@ -576,19 +576,19 @@ const STORY = {
 
 function computeEnding(flags) {
   const { warmth, trust, openedBox, helpedAunt, auntRescue } = flags;
-  if (warmth >= 6 && trust >= 6 && openedBox)
+  if (warmth >= 16 && trust >= 16 && openedBox)
     return { title: "สดใส", bg: "assets/bg-spring.png", fx: ["petals"],
       text: "ผ่านฤดูหนาวมาได้ทั้งบ้าน รู้เรื่องพ่อครบทุกอย่าง\nต้นหอมที่พ่อปลูกไว้หน้าบ้าน... ออกดอกสีขาวเป็นครั้งแรก\n\"พ่อส่งข่าวมาแล้วล่ะ!\" มะลิพูด ทั้งน้ำตาทั้งยิ้ม\n\n— จบแบบดีที่สุด —" };
   if (auntRescue && helpedAunt)
     return { title: "บ้านที่สอง", bg: "assets/bg-aunt.png", fx: ["flicker"],
       text: "คืนพายุนั้น สองบ้านกลายเป็นครอบครัวเดียวกัน\nความดีที่ให้ไป กลับมาในวันที่หนาวที่สุด\n\n— จบแบบสายป้าแก้ม —" };
-  if (warmth >= 5 && openedBox)
+  if (warmth >= 13 && openedBox)
     return { title: "อบอุ่นพอ", bg: "assets/bg-fire.png", fx: ["embers", "flicker"],
       text: "ไฟไม่เคยดับ ท้องไม่เคยว่าง รู้เรื่องพ่อแล้ว\nแต่บางคืน... ก็ยังเหลือความรู้สึกว่ามีอะไรค้างอยู่\n\n— จบแบบดี —" };
-  if (trust >= 5)
+  if (trust >= 13)
     return { title: "แน่นแฟบ", bg: "assets/bg-night.png", fx: ["flicker"],
       text: "บ้านหนาว แต่ไม่มีใครหนาวเพียงลำพัง\nต่างคนต่างเล่าเรื่องพ่อให้กันฟังทั้งคืน\n\n— จบแบบกลาง —" };
-  if (warmth >= 4)
+  if (warmth >= 10)
     return { title: "ค้างเติ่ง", bg: "assets/bg-dawn.png", fx: ["fog"],
       text: "ผ่านฤดูหนาวมาได้... แบบที่ไม่มีใครล้ม\nแต่ก็ไม่มีใครสักคนที่เต็มเปี่ยม\n\n— จบแบบเหลือความรู้สึกว่าพลาดอะไรไป —" };
   return { title: "หนาว", bg: "assets/bg-storm.png", fx: ["snow", "wind"],

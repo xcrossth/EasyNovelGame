@@ -1279,7 +1279,7 @@ const STORY2 = {
 
 "ตอบสิ... ศิริ"`,
     hotspots: [
-      { img: "assets/s2/ic-determined.png", x: 50, y: 80, w: 12, label: "รอฟังคำตอบ", set: { exposedAll: true }, next: "s2_e10_twist" },
+      { img: "assets/s2/ic-determined.png", x: 50, y: 80, w: 12, label: "รอฟังคำตอบ", next: "s2_e10_twist" },
     ],
   },
 
@@ -1510,7 +1510,7 @@ function computeEnding2(flags) {
   if (exposedAll)
     return { title: "💸 เงินซื้ออะไรไม่ได้", bg: "assets/s2/foyer.png", fx: [],
       text: "บ้านหลังนี้เป็นของคุณแล้วจริงๆ\n\nแต่คุณเดินขึ้นบันไดหินอ่อนคนเดียวทุกเช้า\nชนะคนเดียว... ก็เหงาคนเดียวสินะ\n\n— จบแบบได้ทุกอย่างยกเว้นคน —" };
-  if (dignity >= 4 || clue >= 4)
+  if (!exposedAll && chooseHeir && dignity < 5)
     return { title: "🌧 ฝนยังตก", bg: "assets/s2/rain-street.png", fx: [],
       text: "คุณพิสูจน์ได้ไม่ครบ... แต่หนีออกมาได้ก่อนที่จะโดนกลืน\n\nตัวตนจริงของคุณยังรออยู่สักวัน — และฤดูฝนมีอีกหลายรอบ\n\n(ลองเล่นใหม่ สะสมศักดิ์ศรีและเบาะแสให้มากกว่านี้)\n\n— จบแบบเริ่มใหม่นอกบ้าน —" };
   return { title: "⚫ ฤดูฝนที่หายไปตลอดกาล", bg: "assets/s2/lounge.png", fx: [],
