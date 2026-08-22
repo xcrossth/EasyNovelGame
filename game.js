@@ -64,12 +64,19 @@ const GAMES = {
       s2_e6_start: "s2sad", s2_e6_spy: "s2drama", s2_e6_confront_spy: "s2drama", s2_e6_cliff: "crisis",
       s2_e7_start: "s2sad", s2_e7_hurt: "crisis", s2_e7_stand: "crisis", s2_e7_record: "crisis", s2_e7_cliff: "s2sad",
       s2_e8_read: "s2sad", s2_e8_name: "s2drama", s2_e8_open: "s2sad", s2_e8_cliff: "s2drama",
+      s2_e9_kong: "crisis", s2_e9_cliff: "crisis",
+      s2_e10_start: "crisis", s2_e10_wishai: "crisis", s2_e10_record: "crisis", s2_e10_twist: "s2sad",
+      s2_e11_start: "s2drama", s2_e11_mali: "s2sad", s2_e11_police: "s2drama",
+      s2_e12_heir: "s2sad", s2_e12_self: "s2sad", s2_e12_love: "s2sad", s2_e12_will: "s2sad",
     },
     sfx: {
       s2_e1_mali: "assets/audio/s2-heels.mp3",
       s2_e1_mali_fight: "assets/audio/s2-slap.mp3",
       s2_e6_cliff: "assets/audio/s2-heartbeat.mp3",
       s2_e8_cliff: "assets/audio/s2-heartbeat.mp3",
+      s2_e9_cliff: "assets/audio/s2-heartbeat.mp3",
+      s2_e10_twist: "assets/audio/s2-heartbeat.mp3",
+      s2_e9_kong: "assets/audio/s2-heels.mp3",
     },
     bgmDefault: "s2lux",
   },
@@ -258,7 +265,7 @@ document.body.addEventListener("pointerdown", () => {
 // ===== หน้าเลือกนิยาย =====
 const STORIES = [
   { key: "s1", title: "ฤดูหนาวปีนั้น", cover: "assets/cover1.png", status: "play", badge: "เล่นได้เลย" },
-  { key: "s2", title: "ฤดูฝนที่หายไป", cover: "assets/cover2.png", status: "play", badge: "ตอน 1-4" },
+  { key: "s2", title: "ฤดูฝนที่หายไป", cover: "assets/cover2.png", status: "play", badge: "ครบ 12 ตอน" },
   { key: "s3", title: "ฤดูร้อนสุดท้าย", cover: "assets/cover3.png", status: "soon", badge: "เร็วๆ นี้" },
   { key: "s4", title: "ฤดูใบไม้ร่วงสีแดง", cover: "assets/cover4.png", status: "soon", badge: "เร็วๆ นี้" },
 ];

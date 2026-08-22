@@ -9,7 +9,7 @@ function checkStory(name, src, startId, endings) {
     (s.hotspots || []).forEach((h) => {
       if (!story[h.next]) { console.log(`[${name}] MISSING scene:`, h.next, "from", id); ok = false; }
       if (h.img && !fs.existsSync(__dirname + "/" + h.img)) { console.log(`[${name}] MISSING asset:`, h.img); ok = false; }
-      if (h.requires) for (const k of Object.keys(h.requires)) if (!["warmth","trust","dignity","clue","helpedAunt"].includes(k)) { console.log(`[${name}] UNKNOWN require key:`, k); ok = false; }
+      if (h.requires) for (const k of Object.keys(h.requires)) if (!["warmth","trust","dignity","clue","helpedAunt","withTheeradech","hasRecording"].includes(k)) { console.log(`[${name}] UNKNOWN require key:`, k); ok = false; }
     });
     (s.actors || []).forEach((a) => { if (!fs.existsSync(__dirname + "/" + a.img)) { console.log(`[${name}] MISSING asset:`, a.img); ok = false; } });
     if (s.bg && !fs.existsSync(__dirname + "/" + s.bg)) { console.log(`[${name}] MISSING bg:`, s.bg); ok = false; }
@@ -37,8 +37,13 @@ const ok1 = checkStory("story1", s1, "start", [
   { warmth: 5, openedBox: true }, { trust: 5 }, { warmth: 4 }, {},
 ]);
 const ok2 = checkStory("story2", s2, "s2_start", [
-  { dignity: 5, clue: 5, knowsTruth: true },
-  { clue: 5, knowsTruth: true },
+  { dignity: 8, clue: 8, exposedAll: true, chooseHeir: true, hasHalfPage: true, hasRecording: true },
+  { exposedAll: true, chooseSelf: true },
+  { exposedAll: true, withTheeradech: true, chooseLove: true, hasRecording: true },
+  { exposedAll: true, helpedMali: true },
+  { exposedAll: true, allyPapa: true },
+  { exposedAll: true },
+  { dignity: 5, clue: 5 },
   { dignity: 1, clue: 1 },
 ]);
 console.log(ok1 && ok2 ? "ALL OK" : "ERRORS FOUND");
