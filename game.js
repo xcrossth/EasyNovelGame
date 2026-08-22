@@ -24,7 +24,9 @@ function renderHUD() {
 
 function clearDynamic() {
   clearTimeout(nudgeTimer);
-  gameEl.querySelectorAll(".actor, .hotspot, .snow, .fx").forEach((el) => el.remove());
+  gameEl.querySelectorAll(
+    ".actor, .hotspot, .fx, .snow, .ember, .petal, .dust, .steam, .wind-line"
+  ).forEach((el) => el.remove());
   gameEl.classList.remove("shake-screen");
 }
 
