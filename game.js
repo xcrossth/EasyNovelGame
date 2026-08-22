@@ -30,12 +30,25 @@ const GAMES = {
     coldOverlay: false,
     bgDefault: "assets/s2/foyer.png",
     bgm: {
-      s2_e3_start: "crisis", s2_e3_give: "crisis", s2_e3_refuse: "crisis", s2_e3_lie: "crisis",
-      s2_e3_rain: "storm", s2_e3_defend: "storm", s2_e3_evidence: "storm", s2_e3_leave: "storm",
-      s2_e4_start: "crisis", s2_e4_talk: "crisis", s2_e4_file: "crisis", s2_e4_deal: "crisis",
-      s2_e2_mali_saw: "crisis", s2_e2_confront: "crisis",
+      // ตอน 1-4
+      s2_e1_mali: "s2drama", s2_e1_mali_fight: "s2drama",
+      s2_e2_mali_saw: "s2drama", s2_e2_confront: "s2drama", s2_e2_cliff_risk: "s2drama",
+      s2_e3_start: "s2drama", s2_e3_give: "s2drama", s2_e3_refuse: "s2drama", s2_e3_lie: "s2drama",
+      s2_e3_rain: "crisis", s2_e3_defend: "crisis", s2_e3_evidence: "crisis", s2_e3_leave: "crisis",
+      s2_e4_start: "s2drama", s2_e4_talk: "s2drama", s2_e4_file: "s2drama", s2_e4_deal: "s2drama",
+      // ตอน 5-8
+      s2_e5_mali_see: "s2drama", s2_e5_talkback: "s2drama",
+      s2_e6_start: "s2sad", s2_e6_spy: "s2drama", s2_e6_confront_spy: "s2drama", s2_e6_cliff: "crisis",
+      s2_e7_start: "s2sad", s2_e7_hurt: "crisis", s2_e7_stand: "crisis", s2_e7_record: "crisis", s2_e7_cliff: "s2sad",
+      s2_e8_read: "s2sad", s2_e8_name: "s2drama", s2_e8_open: "s2sad", s2_e8_cliff: "s2drama",
     },
-    sfx: {},
+    sfx: {
+      s2_e1_mali: "assets/audio/s2-heels.mp3",
+      s2_e1_mali_fight: "assets/audio/s2-slap.mp3",
+      s2_e6_cliff: "assets/audio/s2-heartbeat.mp3",
+      s2_e8_cliff: "assets/audio/s2-heartbeat.mp3",
+    },
+    bgmDefault: "s2lux",
   },
 };
 
@@ -178,6 +191,9 @@ const BGM = {
   crisis: "assets/audio/bgm-crisis.mp3",
   storm: "assets/audio/bgm-storm.mp3",
   warm: "assets/audio/bgm-warm.mp3",
+  s2drama: "assets/audio/s2-bgm-drama.mp3",
+  s2sad: "assets/audio/s2-bgm-sad.mp3",
+  s2lux: "assets/audio/s2-bgm-lux.mp3",
 };
 let bgmAudio = new Audio();
 bgmAudio.loop = true;
@@ -206,7 +222,7 @@ document.getElementById("mute").onclick = () => {
   else bgmAudio.play().catch(() => {});
 };
 document.body.addEventListener("pointerdown", () => {
-  if (!muted && !currentBgmKey && S) setBgm(S.bgm[currentSceneId] || "main");
+  if (!muted && !currentBgmKey && S) setBgm(S.bgm[currentSceneId] || S.bgmDefault || "main");
   else if (!muted && bgmAudio.paused) bgmAudio.play().catch(() => {});
 });
 
@@ -315,7 +331,7 @@ function gotoScene(id) {
   endingEl.style.display = "none";
   if (scene.bg) bgEl.src = scene.bg;
   applyFx(scene.fx);
-  setBgm(S.bgm[id] || "main");
+  setBgm(S.bgm[id] || S.bgmDefault || "main");
   if (S.sfx[id]) playSfx(S.sfx[id]);
 
   (scene.actors || []).forEach((a) => {
