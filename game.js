@@ -1,3 +1,62 @@
+// ===== ระบบเสียง =====
+// BGM สลับตามกลุ่มฉาก + SFX คลิก/เหตุการณ์ (เบราว์เซอร์ต้องรอผู้เล่นแตะครั้งแรกก่อน)
+const BGM = {
+  main: "assets/audio/bgm-main.mp3",
+  crisis: "assets/audio/bgm-crisis.mp3",
+  storm: "assets/audio/bgm-storm.mp3",
+  warm: "assets/audio/bgm-warm.mp3",
+};
+const SCENE_BGM = {
+  a3_crisis: "crisis", a3_path: "crisis", a3_river: "crisis", a3_clinic: "crisis",
+  a3_return: "crisis", a3_aunt_door: "crisis", a3_aunt_in: "crisis",
+  a3_herb_search: "crisis", a3_gamble: "crisis",
+  a5_prep: "storm", a5_intro: "storm", a5_huddle: "storm", a5_fireout: "storm", a5_escape: "storm",
+  a5_relight: "warm", a5_knock: "warm", a5_dawn: "warm",
+};
+const SCENE_SFX = {
+  a2_knock: "assets/audio/sfx-knock.mp3",
+  a4_open: "assets/audio/sfx-open.mp3",
+};
+let bgmAudio = new Audio();
+bgmAudio.loop = true;
+bgmAudio.volume = 0.45;
+let currentBgmKey = null;
+let muted = false;
+let sfxCache = {};
+for (const p of ["assets/audio/sfx-click.mp3"]) {
+  sfxCache[p] = new Audio(p);
+  sfxCache[p].volume = 0.6;
+}
+function playSfx(path) {
+  if (muted) return;
+  const a = (sfxCache[path] ||= new Audio(path));
+  a.currentTime = 0;
+  a.volume = 0.6;
+  a.play().catch(() => {});
+}
+function setBgm(key) {
+  if (key === currentBgmKey) return;
+  currentBgmKey = key;
+  if (muted) return;
+  bgmAudio.src = BGM[key];
+  bgmAudio.play().catch(() => {});
+}
+document.getElementById("mute").onclick = () => {
+  muted = !muted;
+  document.getElementById("mute").textContent = muted ? "🔇" : "🔊";
+  if (muted) bgmAudio.pause();
+  else { bgmAudio.play().catch(() => {}); }
+};
+// แตะแรกของเซสชัน = เริ่มเสียง (นโยบาย autoplay ของเบราว์เซอร์)
+document.body.addEventListener(
+  "pointerdown",
+  () => {
+    if (!muted && !currentBgmKey) setBgm(SCENE_BGM[currentSceneId] || "main");
+    else if (!muted && bgmAudio.paused) bgmAudio.play().catch(() => {});
+  },
+  { once: false }
+);
+
 // ===== ตัวเกมหลัก (point-and-click + fx บรรยากาศ) =====
 
 let flags = { warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false };
@@ -213,6 +272,7 @@ function gotoScene(id) {
 
   if (scene.dynamic === "ending") {
     const e = computeEnding(flags);
+    setBgm(e.title === "หนาว" ? "storm" : e.title === "สดใส" || e.title === "บ้านที่สอง" ? "warm" : "main");
     captionEl.style.display = "none";
     if (e.bg) bgEl.src = e.bg;
     applyFx(e.fx);
@@ -237,6 +297,8 @@ function gotoScene(id) {
   endingEl.style.display = "none";
   if (scene.bg) bgEl.src = scene.bg;
   applyFx(scene.fx);
+  setBgm(SCENE_BGM[id] || "main");
+  if (SCENE_SFX[id]) playSfx(SCENE_SFX[id]);
 
   // ตัวละคร/วัตถุประกอบขึ้นทันที ไม่ให้จอว่างระหว่างพิมพ์ข้อความ
   (scene.actors || []).forEach((a) => {
@@ -263,6 +325,7 @@ function gotoScene(id) {
       el.onclick = (ev) => {
         ev.stopPropagation();
         if (!ok) return;
+        playSfx("assets/audio/sfx-click.mp3");
         if (h.effects) {
           flags.warmth = Math.max(0, flags.warmth + (h.effects.warmth || 0));
           flags.trust = Math.max(0, flags.trust + (h.effects.trust || 0));
