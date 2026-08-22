@@ -57,6 +57,62 @@ document.body.addEventListener(
   { once: false }
 );
 
+// ===== รายการนิยาย (หน้าเลือกเรื่อง) =====
+const STORIES = [
+  { id: 1, title: "ฤดูหนาวปีนั้น", cover: "assets/cover1.png", status: "play", badge: "เล่นได้เลย" },
+  { id: 2, title: "ฤดูฝนที่หายไป", cover: "assets/cover2.png", status: "wip", badge: "กำลังเขียนบท" },
+  { id: 3, title: "ฤดูร้อนสุดท้าย", cover: "assets/cover3.png", status: "soon", badge: "เร็วๆ นี้" },
+  { id: 4, title: "ฤดูใบไม้ร่วงสีแดง", cover: "assets/cover4.png", status: "soon", badge: "เร็วๆ นี้" },
+];
+const menuEl = document.getElementById("menu");
+const hudEl = document.getElementById("hud");
+const toastEl = document.getElementById("toast");
+
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  setTimeout(() => toastEl.classList.remove("show"), 1800);
+}
+
+function buildMenu() {
+  const grid = document.getElementById("menu-grid");
+  grid.innerHTML = "";
+  for (const st of STORIES) {
+    const card = document.createElement("div");
+    card.className = "story-card" + (st.status === "play" ? "" : " locked");
+    card.innerHTML =
+      `<img src="${st.cover}" alt="">
+       <div class="veil"></div>
+       <div class="info">
+         <span class="name">${st.title}</span>
+         <span class="badge ${st.status}">${st.badge}</span>
+       </div>`;
+    card.onclick = () => {
+      if (st.status === "play") startStory1();
+      else if (st.status === "wip") showToast("🖋 " + st.title + " — กำลังเขียนบทอยู่...");
+      else showToast("✨ " + st.title + " — เร็วๆ นี้");
+    };
+    grid.appendChild(card);
+  }
+}
+
+function showMenu() {
+  clearDynamic();
+  clearInterval(typeTimer);
+  captionEl.style.display = "none";
+  endingEl.style.display = "none";
+  hudEl.style.display = "none";
+  bgmAudio.pause();
+  currentBgmKey = null;
+  menuEl.style.display = "flex";
+}
+
+function startStory1() {
+  menuEl.style.display = "none";
+  hudEl.style.display = "";
+  restart();
+}
+
 // ===== ตัวเกมหลัก (point-and-click + fx บรรยากาศ) =====
 
 let flags = { warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false };
@@ -290,7 +346,13 @@ function gotoScene(id) {
     btn.id = "restart";
     btn.textContent = "🔄 อีกครั้ง";
     btn.onclick = restart;
-    endingEl.append(title, text, btn);
+    const home = document.createElement("button");
+    home.id = "restart";
+    home.style.background = "rgba(255,255,255,.14)";
+    home.style.color = "var(--text)";
+    home.textContent = "🏠 เลือกเรื่องอื่น";
+    home.onclick = showMenu;
+    endingEl.append(title, text, btn, home);
     return;
   }
 
@@ -352,3 +414,5 @@ function restart() {
 
 renderHUD();
 gotoScene("start");
+buildMenu();
+showMenu();
