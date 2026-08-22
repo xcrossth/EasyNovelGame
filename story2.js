@@ -15,9 +15,9 @@ const STORY2 = {
 
 แต่บางคืน ฝนตกหนักแบบนี้... ฉันก็ยังรู้สึกว่ามีอะไรบางอย่างในบ้านหลังนี้ มัน "ผิด" มาตลอด`,
     hotspots: [
-      { img: "assets/s2/ic-broom.png", x: 26, y: 74, w: 18, next: "s2_e1_chores", set: {} },
-      { img: "assets/s2/item-photo.png", x: 50, y: 78, w: 16, next: "s2_e1_intro2" },
-      { img: "assets/s2/item-file.png", x: 74, y: 74, w: 16, next: "s2_e1_intro2" },
+      { img: "assets/s2/ic-broom.png", label: "เริ่มงานเช้าวันนี้", x: 26, y: 74, w: 18, next: "s2_e1_chores", set: {} },
+      { img: "assets/s2/item-photo.png", label: "มองภาพถ่ายบนผนัง", x: 50, y: 78, w: 16, next: "s2_e1_intro2" },
+      { img: "assets/s2/item-file.png", label: "นึกถึงเอกสารเก่าๆ", x: 74, y: 74, w: 16, next: "s2_e1_intro2" },
     ],
   },
 
@@ -31,7 +31,7 @@ const STORY2 = {
 
 และ "คุณหลี" คงต้องการน้ำชาตื่นเช้าตรงเวลาเป็นทุนเดิม`,
     hotspots: [
-      { img: "assets/s2/ic-broom.png", x: 50, y: 78, w: 18, next: "s2_e1_mali" },
+      { img: "assets/s2/ic-broom.png", label: "ยกถาดน้ำชาลงไปเสิร์ฟ", x: 50, y: 78, w: 18, next: "s2_e1_mali" },
     ],
   },
 
@@ -45,7 +45,7 @@ const STORY2 = {
 
 มาดามศิริเรียกเสียงดังจากชั้นล่าง "หนึ่งฤทัย! ลงมาเดี๋ยวนี้"`,
     hotspots: [
-      { img: "assets/obj-door.png", x: 50, y: 78, w: 20, next: "s2_e1_mali" },
+      { img: "assets/s2/ic-door.png", x: 50, y: 78, w: 20, next: "s2_e1_mali" },
     ],
   },
 
@@ -60,9 +60,9 @@ const STORY2 = {
 ยี่สิบสองปีแล้ว... ฉันยังจำได้ว่าวันแรกที่เธอเรียกฉันว่าไอ้สาวใช้ ฉันอายุแค่ห้าขวบ`,
     actors: [{ img: "assets/s2/ch-mali.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 26, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e1_mali_calm" },
-      { img: "assets/s2/ic-determined.png", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e1_mali_fight" },
-      { img: "assets/s2/ic-lookaway.png", x: 74, y: 78, w: 12, next: "s2_e1_mali_silent" },
+      { img: "assets/s2/ic-smile.png", label: "ตอบเสียงเรียบๆ", x: 26, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e1_mali_calm" },
+      { img: "assets/s2/ic-determined.png", label: "เงยหน้าสู้เธอ", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e1_mali_fight" },
+      { img: "assets/s2/ic-lookaway.png", label: "ทำเป็นเงียบ", x: 74, y: 78, w: 12, next: "s2_e1_mali_silent" },
     ],
   },
 
@@ -170,8 +170,8 @@ const STORY2 = {
 ที่หลังซองเขียนไว้: "ให้ลูกชั้นคนเดียว"`,
     actors: [{ img: "assets/obj-box.png", x: 50, y: 55, w: 30 }],
     hotspots: [
-      { img: "assets/s2/item-photo.png", x: 30, y: 80, w: 16, effects: { clue: 2 }, set: { hasPhoto: true }, next: "s2_e2_photo" },
-      { img: "assets/obj-box.png", x: 70, y: 80, w: 20, next: "s2_e2_paperboat" },
+      { img: "assets/s2/item-photo.png", label: "เปิดซองรูปถ่าย", x: 30, y: 80, w: 16, effects: { clue: 2 }, set: { hasPhoto: true }, next: "s2_e2_photo" },
+      { img: "assets/obj-box.png", label: "ดูของอื่นในกล่องต่อ", x: 70, y: 80, w: 20, next: "s2_e2_paperboat" },
     ],
   },
 
@@ -187,8 +187,8 @@ const STORY2 = {
 
 ที่หลังรูปมีลายมือเขียนว่า: "ฝากไว้กับบ้านนี้ — ท.ร. ลูกสาวคนโต"`,
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 30, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e2_paperboat" },
-      { img: "assets/obj-letter.png", x: 70, y: 78, w: 16, effects: { dignity: 1 }, next: "s2_e2_paperboat" },
+      { img: "assets/s2/ic-smile.png", label: "เก็บรูปเอาไว้ก่อน", x: 30, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e2_paperboat" },
+      { img: "assets/obj-letter.png", label: "จดจำทุกรายละเอียด", x: 70, y: 78, w: 16, effects: { dignity: 1 }, next: "s2_e2_paperboat" },
     ],
   },
 
@@ -204,7 +204,7 @@ const STORY2 = {
 
 ครึ่งหลังของเอกสาร... ฉันกัดริมฝีปากจนชา มันขาดหายไป`,
     hotspots: [
-      { img: "assets/obj-letter.png", x: 50, y: 80, w: 16, effects: { clue: 1 }, set: { hasDoc: true }, next: "s2_e2_mali_saw" },
+      { img: "assets/obj-letter.png", label: "หยิบเรือกระดาษขึ้นมาดู", x: 50, y: 80, w: 16, effects: { clue: 1 }, set: { hasDoc: true }, next: "s2_e2_mali_saw" },
     ],
   },
 
@@ -221,9 +221,9 @@ const STORY2 = {
 ตาเธอมันวาวผิดปกติ... เหมือนคนที่เพิ่งกลัวอะไรบางอย่าง`,
     actors: [{ img: "assets/s2/ch-mali.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 26, y: 78, w: 14, effects: { dignity: 1, clue: 1 }, next: "s2_e2_confront" },
-      { img: "assets/s2/ic-lookaway.png", x: 50, y: 78, w: 12, next: "s2_e2_confront" },
-      { img: "assets/obj-door.png", x: 74, y: 78, w: 18, next: "s2_e2_walkaway" },
+      { img: "assets/s2/ic-smile.png", label: "เผชิญหน้ากับเธอ", x: 26, y: 78, w: 14, effects: { dignity: 1, clue: 1 }, next: "s2_e2_confront" },
+      { img: "assets/s2/ic-lookaway.png", label: "ทำเป็นไม่สนใจ", x: 50, y: 78, w: 12, next: "s2_e2_confront" },
+      { img: "assets/s2/ic-door.png", label: "เดินหนีก่อน", x: 74, y: 78, w: 18, next: "s2_e2_walkaway" },
     ],
   },
 
@@ -240,8 +240,8 @@ const STORY2 = {
 "อย่าทำตัวเหมือนเป็นอะไรที่มากกว่านั้น"`,
     actors: [{ img: "assets/s2/ch-mali.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 30, y: 78, w: 14, effects: { dignity: 1 }, next: "s2_e2_cliff" },
-      { img: "assets/s2/item-photo.png", x: 70, y: 78, w: 16, effects: { clue: 2 }, set: { maliSuspects: true }, next: "s2_e2_cliff_risk" },
+      { img: "assets/s2/ic-smile.png", label: "ถามกลับให้ชัด", x: 30, y: 78, w: 14, effects: { dignity: 1 }, next: "s2_e2_cliff" },
+      { img: "assets/s2/item-photo.png", label: "ยื่นรูปถ่ายให้ดู", x: 70, y: 78, w: 16, effects: { clue: 2 }, set: { maliSuspects: true }, next: "s2_e2_cliff_risk" },
     ],
   },
 
@@ -255,7 +255,7 @@ const STORY2 = {
 
 "วิ่งสิ! วิ่งไปเที่ยวไหนก็ได้! ตอนเช้านี้แกโดนไล่ออกจากบ้านแน่"`,
     hotspots: [
-      { img: "assets/obj-door.png", x: 50, y: 78, w: 20, next: "s2_e2_cliff" },
+      { img: "assets/s2/ic-door.png", x: 50, y: 78, w: 20, next: "s2_e2_cliff" },
     ],
   },
 
@@ -303,9 +303,9 @@ const STORY2 = {
 น้ำเสียงนิ่งๆ แต่มันคือคำสั่งของเจ้าของบ้าน`,
     actors: [{ img: "assets/s2/ch-madam.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/obj-box.png", x: 26, y: 78, w: 18, next: "s2_e3_give" },
-      { img: "assets/s2/ic-smile.png", x: 50, y: 80, w: 14, effects: { dignity: 2 }, next: "s2_e3_refuse" },
-      { img: "assets/s2/ic-smile.png", x: 74, y: 78, w: 12, effects: { clue: 1 }, next: "s2_e3_lie" },
+      { img: "assets/obj-box.png", label: "ยอมให้กล่องไป", x: 26, y: 78, w: 18, next: "s2_e3_give" },
+      { img: "assets/s2/ic-smile.png", label: "ปฏิเสธเธอ", x: 50, y: 80, w: 14, effects: { dignity: 2 }, next: "s2_e3_refuse" },
+      { img: "assets/s2/ic-smile.png", label: "โกหกว่าเผาแล้ว", x: 74, y: 78, w: 12, effects: { clue: 1 }, next: "s2_e3_lie" },
     ],
   },
 
@@ -372,9 +372,9 @@ const STORY2 = {
 
 ใบหน้าทุกใบในบ้านมองมาที่ฉัน — และคนเดียวที่จะเลือกยืนข้ามใครตอนนี้คือตัวฉันเอง`,
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 24, y: 78, w: 14, effects: { dignity: 2 }, next: "s2_e3_defend" },
-      { img: "assets/s2/item-file.png", x: 50, y: 80, w: 16, requires: { clue: 3 }, next: "s2_e3_evidence" },
-      { img: "assets/obj-door.png", x: 76, y: 78, w: 18, next: "s2_e3_leave" },
+      { img: "assets/s2/ic-smile.png", label: "แก้ตัวต่อหน้าทุกคน", x: 24, y: 78, w: 14, effects: { dignity: 2 }, next: "s2_e3_defend" },
+      { img: "assets/s2/item-file.png", label: "ใช้หลักฐานโรงพยาบาล", x: 50, y: 80, w: 16, requires: { clue: 3 }, next: "s2_e3_evidence" },
+      { img: "assets/s2/ic-door.png", label: "เก็บของออกจากบ้าน", x: 76, y: 78, w: 18, next: "s2_e3_leave" },
     ],
   },
 
@@ -420,7 +420,7 @@ const STORY2 = {
 
 "เดินออกไปตอนนี้ แล้งเรื่องทั้งหมดจะจบแค่นี้... หนูเข้าใจนะ"`,
     hotspots: [
-      { img: "assets/obj-door.png", x: 50, y: 80, w: 20, next: "s2_e3_cliff" },
+      { img: "assets/s2/ic-door.png", x: 50, y: 80, w: 20, next: "s2_e3_cliff" },
     ],
   },
 
@@ -453,9 +453,9 @@ const STORY2 = {
 "ฉันแค่อยากรู้ว่าลูกสาวแท้ๆ ของรัตนวงศ์... จะทำอะไรต่อจากนี้"`,
     actors: [{ img: "assets/s2/ch-theeradech.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 26, y: 78, w: 14, effects: { dignity: 1 }, next: "s2_e4_talk" },
-      { img: "assets/s2/item-file.png", x: 50, y: 80, w: 16, effects: { clue: 1 }, next: "s2_e4_talk" },
-      { img: "assets/s2/ic-smile.png", x: 74, y: 78, w: 12, next: "s2_e4_talk" },
+      { img: "assets/s2/ic-smile.png", label: "ถามเขาตรงๆ", x: 26, y: 78, w: 14, effects: { dignity: 1 }, next: "s2_e4_talk" },
+      { img: "assets/s2/item-file.png", label: "ขอดูแฟ้มต่อ", x: 50, y: 80, w: 16, effects: { clue: 1 }, next: "s2_e4_talk" },
+      { img: "assets/s2/ic-smile.png", label: "ฟังเงียบๆ ก่อน", x: 74, y: 78, w: 12, next: "s2_e4_talk" },
     ],
   },
 
@@ -472,8 +472,8 @@ const STORY2 = {
 "แล้วคุณก็มาปรากฏตัว... พร้อมรอยแผลเป็นรูปเลข 7 ที่ข้อมือซ้าย ตรงตามที่พ่อฉันบรรยายไว้ทุกตัวอักษร"`,
     actors: [{ img: "assets/s2/ch-theeradech.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/obj-box.png", x: 30, y: 78, w: 18, next: "s2_e4_file" },
-      { img: "assets/s2/ic-smile.png", x: 70, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e4_deal" },
+      { img: "assets/obj-box.png", label: "ขอดูแฟ้มเลย", x: 30, y: 78, w: 18, next: "s2_e4_file" },
+      { img: "assets/s2/ic-smile.png", label: "คุยเรื่องข้อตกลง", x: 70, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e4_deal" },
     ],
   },
 
@@ -509,8 +509,8 @@ const STORY2 = {
 เขายื่นมือข้ามโต๊ะมา — "ตกลงไหม คุณ... ทายาทรัตนวงศ์?"`,
     actors: [{ img: "assets/s2/ch-theeradech.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 26, y: 78, w: 14, effects: { dignity: 2, clue: 1 }, set: { withTheeradech: true }, next: "s2_e4_cliff" },
-      { img: "assets/s2/ic-smile.png", x: 50, y: 80, w: 12, effects: { dignity: 1 }, next: "s2_e4_independent" },
+      { img: "assets/s2/ic-smile.png", label: "รับข้อตกลง", x: 26, y: 78, w: 14, effects: { dignity: 2, clue: 1 }, set: { withTheeradech: true }, next: "s2_e4_cliff" },
+      { img: "assets/s2/ic-smile.png", label: "ยืนด้วยตัวเอง", x: 50, y: 80, w: 12, effects: { dignity: 1 }, next: "s2_e4_independent" },
     ],
   },
 
@@ -572,7 +572,7 @@ const STORY2 = {
 เขาเงียบไปสามวินาที... แล้วก้าวออกจากทาง "ตามมา"`,
     actors: [{ img: "assets/s2/ch-manager.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/obj-door.png", x: 50, y: 80, w: 20, next: "s2_e5_kitchen" },
+      { img: "assets/s2/ic-door.png", x: 50, y: 80, w: 20, next: "s2_e5_kitchen" },
     ],
   },
 
@@ -587,9 +587,9 @@ const STORY2 = {
 เธอหยุดคำพูดเอง มองซ้ายมองขวา แล้วลดเสียงลงเหลือกระซิบ`,
     actors: [{ img: "assets/s2/ch-ploy.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-smile.png", x: 26, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e5_ploy_help" },
-      { img: "assets/s2/ic-lookaway.png", x: 50, y: 78, w: 12, next: "s2_e5_ploy_cold" },
-      { img: "assets/s2/item-file.png", x: 74, y: 78, w: 16, effects: { dignity: 1 }, next: "s2_e5_ploy_cold" },
+      { img: "assets/s2/ic-smile.png", label: "มอบความไว้ใจให้พลอย", x: 26, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e5_ploy_help" },
+      { img: "assets/s2/ic-lookaway.png", label: "ยังไม่พร้อมบอก", x: 50, y: 78, w: 12, next: "s2_e5_ploy_cold" },
+      { img: "assets/s2/item-file.png", label: "เบี่ยงเบนเรื่อง", x: 74, y: 78, w: 16, effects: { dignity: 1 }, next: "s2_e5_ploy_cold" },
     ],
   },
 
@@ -637,8 +637,8 @@ const STORY2 = {
 มาลีรัตน์ชี้หน้าฉัน มือสั่นๆ "แก... แกคิดว่าแกกลับมาทำอะไรได้เนี่ยนะ"`,
     actors: [{ img: "assets/s2/ch-mali.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-determined.png", x: 30, y: 78, w: 16, effects: { dignity: 2 }, next: "s2_e5_talkback" },
-      { img: "assets/s2/ic-smile.png", x: 70, y: 78, w: 16, effects: { clue: 1 }, next: "s2_e5_humble" },
+      { img: "assets/s2/ic-determined.png", label: "เดินผ่านอย่างมั่นใจ", x: 30, y: 78, w: 16, effects: { dignity: 2 }, next: "s2_e5_talkback" },
+      { img: "assets/s2/ic-smile.png", label: "ถ่อมตัวเป็นสาวใช้", x: 70, y: 78, w: 16, effects: { clue: 1 }, next: "s2_e5_humble" },
     ],
   },
 
@@ -733,8 +733,8 @@ const STORY2 = {
 
 "แต่ก่อนถึงวันนั้น หนูต้องหา 'หลักฐานที่ขาดไม่ได้' ให้ครบก่อน"`,
     hotspots: [
-      { img: "assets/s2/item-file.png", x: 30, y: 78, w: 16, effects: { clue: 1 }, next: "s2_e6_spy" },
-      { img: "assets/s2/ic-smile.png", x: 70, y: 78, w: 14, effects: { dignity: 1 }, next: "s2_e6_spy" },
+      { img: "assets/s2/item-file.png", label: "ออกไปตามหาหลักฐาน", x: 30, y: 78, w: 16, effects: { clue: 1 }, next: "s2_e6_spy" },
+      { img: "assets/s2/ic-smile.png", label: "ปรึกษาแผนเพิ่ม", x: 70, y: 78, w: 14, effects: { dignity: 1 }, next: "s2_e6_spy" },
     ],
   },
 
@@ -748,9 +748,9 @@ const STORY2 = {
 
 มีสายลับในห้องนี้... และฉันรู้ว่าเป็นใคร แต่จะทำอย่างไรล่ะ?`,
     hotspots: [
-      { img: "assets/s2/ic-lookaway.png", x: 26, y: 78, w: 12, effects: { clue: 2 }, next: "s2_e6_feed" },
-      { img: "assets/s2/ic-determined.png", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e6_confront_spy" },
-      { img: "assets/s2/ic-smile.png", x: 74, y: 78, w: 16, next: "s2_e6_quiet" },
+      { img: "assets/s2/ic-lookaway.png", label: "ป้อนข่าวปลอมผ่านสายลับ", x: 26, y: 78, w: 12, effects: { clue: 2 }, next: "s2_e6_feed" },
+      { img: "assets/s2/ic-determined.png", label: "จับคุยกับสายลับตรงๆ", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e6_confront_spy" },
+      { img: "assets/s2/ic-smile.png", label: "ย้ายที่คุยลับ", x: 74, y: 78, w: 16, next: "s2_e6_quiet" },
     ],
   },
 
@@ -847,9 +847,9 @@ const STORY2 = {
 "หนูหนึ่งฤทัย... รีบไปจากบ้านนี้ ก่อนที่มันจะสายเกินไป"`,
     actors: [{ img: "assets/s2/ch-wishai.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-sad.png", x: 26, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e7_gentle" },
-      { img: "assets/s2/item-file.png", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e7_press" },
-      { img: "assets/s2/ic-lookaway.png", x: 74, y: 78, w: 12, next: "s2_e7_wait" },
+      { img: "assets/s2/ic-sad.png", label: "ปลอบใจแบบนุ่มนวล", x: 26, y: 78, w: 14, effects: { clue: 1 }, next: "s2_e7_gentle" },
+      { img: "assets/s2/item-file.png", label: "กดดันให้บอกความจริง", x: 50, y: 80, w: 16, effects: { dignity: 1 }, next: "s2_e7_press" },
+      { img: "assets/s2/ic-lookaway.png", label: "นั่งรอเขาเอง", x: 74, y: 78, w: 12, next: "s2_e7_wait" },
     ],
   },
 
@@ -917,8 +917,8 @@ const STORY2 = {
 ฉันกรีดร้อง... ในมือยังกุมสมุดบันทึกไว้แน่น`,
     actors: [{ img: "assets/s2/ch-wishai.png", x: 50, y: 55, w: 34 }],
     hotspots: [
-      { img: "assets/s2/ic-determined.png", x: 30, y: 78, w: 16, effects: { dignity: 2 }, next: "s2_e7_stand" },
-      { img: "assets/s2/ic-lookaway.png", x: 70, y: 78, w: 12, effects: { clue: 1 }, next: "s2_e7_record" },
+      { img: "assets/s2/ic-determined.png", label: "ขวางปกป้องวิชัย", x: 30, y: 78, w: 16, effects: { dignity: 2 }, next: "s2_e7_stand" },
+      { img: "assets/s2/ic-lookaway.png", label: "แอบอัดเสียงไว้", x: 70, y: 78, w: 12, effects: { clue: 1 }, next: "s2_e7_record" },
     ],
   },
 
@@ -1012,8 +1012,8 @@ const STORY2 = {
 
 "ครึ่งหน้าที่ฉีก ฉันซ่อนไว้ ณ ที่ๆ ฝนไม่มาถึง"`,
     hotspots: [
-      { img: "assets/s2/item-file.png", x: 30, y: 78, w: 16, effects: { clue: 1 }, set: { knowsManager: true }, next: "s2_e8_riddle" },
-      { img: "assets/s2/ic-smile.png", x: 70, y: 78, w: 14, effects: { dignity: 1 }, set: { knowsManager: true }, next: "s2_e8_riddle" },
+      { img: "assets/s2/item-file.png", label: "ตามหาครึ่งกระดาษที่หาย", x: 30, y: 78, w: 16, effects: { clue: 1 }, set: { knowsManager: true }, next: "s2_e8_riddle" },
+      { img: "assets/s2/ic-smile.png", label: "ประเมินก่อนแล้วค่อยว่า", x: 70, y: 78, w: 14, effects: { dignity: 1 }, set: { knowsManager: true }, next: "s2_e8_riddle" },
     ],
   },
 
@@ -1044,8 +1044,8 @@ const STORY2 = {
 
 ตัวเลขที่พ่อเล่าให้ฟังทุกปี ไม่เคยขาด`,
     hotspots: [
-      { img: "assets/s2/item-diary.png", x: 50, y: 80, w: 18, requires: { clue: 6 }, effects: { clue: 2 }, set: { hasHalfPage: true }, next: "s2_e8_open" },
-      { img: "assets/s2/ic-smile.png", x: 50, y: 80, w: 14, next: "s2_e8_fail" },
+      { img: "assets/s2/item-diary.png", label: "ลองรหัสวันสำคัญของพ่อ", x: 50, y: 80, w: 18, requires: { clue: 6 }, effects: { clue: 2 }, set: { hasHalfPage: true }, next: "s2_e8_open" },
+      { img: "assets/s2/ic-smile.png", label: "ถอยออกมาก่อน", x: 50, y: 80, w: 14, next: "s2_e8_fail" },
     ],
   },
 

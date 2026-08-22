@@ -1,3 +1,26 @@
+// ป้ายกำกับความหมายของไอคอน (ใช้เมื่อ hotspot ไม่ได้ระบุ label เอง)
+const IMG_LABELS = {
+  "assets/obj-firewood.png": "หาฟืน", "assets/obj-ladder.png": "อุดหลังคา",
+  "assets/obj-blanket.png": "ผ้าห่ม / กอดกัน", "assets/obj-fire.png": "ก่อไฟ",
+  "assets/obj-food.png": "ทำอาหาร", "assets/obj-medicine.png": "หยิบยา",
+  "assets/obj-candle.png": "จุดเทียน / อยู่เฝ้า", "assets/obj-bed.png": "เข้านอน",
+  "assets/obj-sunrise.png": "ถึงเช้าวันใหม่", "assets/obj-door.png": "เปิดประตู",
+  "assets/obj-tea.png": "ชงชา / ดื่มของอุ่น", "assets/obj-herbs.png": "หาสมุนไพร",
+  "assets/obj-key.png": "ใช้กุญแจ", "assets/obj-letter.png": "อ่านจดหมาย",
+  "assets/obj-money.png": "เงินของพ่อ", "assets/obj-box.png": "เปิดกล่อง",
+  "assets/obj-cloth.png": "ผ้าเช็ดตัว / น้ำ", "assets/obj-heart.png": "ปลอบใจ / ให้ใจ",
+  "assets/obj-lantern.png": "ถือตะเกียงออกไป", "assets/obj-plant.png": "ต้นหอมของพ่อ",
+  "assets/s2/ic-determined.png": "เงยหน้าสู้", "assets/s2/ic-lookaway.png": "ทำเป็นไม่เห็น",
+  "assets/s2/ic-smile.png": "ตอบเรียบๆ", "assets/s2/ic-sad.png": "ปลอบโยน",
+  "assets/s2/ic-angry.png": "โกรธฟันธง", "assets/s2/ic-think.png": "ครุ่นคิด",
+  "assets/s2/ic-broom.png": "ทำงานบ้าน", "assets/s2/ic-door.png": "เปิดประตู",
+  "assets/s2/item-file.png": "แฟ้มเอกสาร", "assets/s2/item-photo.png": "รูปถ่ายเก่า",
+  "assets/s2/item-diary.png": "สมุดไดอารี่", "assets/s2/item-bracelet.png": "กำไลทองหูกระดิ่ง",
+};
+function hotspotLabel(h) {
+  return h.label || IMG_LABELS[h.img] || "แตะเพื่อไปต่อ";
+}
+
 // ===== ตัวเกมหลัก — รองรับหลายเรื่อง (multi-story) =====
 
 // คำจำกัดความของแต่ละเรื่อง
@@ -355,7 +378,9 @@ function gotoScene(id) {
       el.style.left = h.x + "%";
       el.style.top = Math.min(h.y, 82) + "%";
       el.style.width = h.w + "%";
-      el.innerHTML = h.img ? `<img src="${h.img}" alt="">` : `<div class="emoji">❔</div>`;
+      el.innerHTML = h.img
+        ? `<img src="${h.img}" alt=""><div class="lbl">${hotspotLabel(h)}</div>`
+        : `<div class="emoji">❔</div>`;
       if (!ok) el.innerHTML += `<div class="lock">🔒</div>`;
       el.onclick = (ev) => {
         ev.stopPropagation();
