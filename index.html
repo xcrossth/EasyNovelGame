@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d131c">
+<title>ฤดูหนาวปีนั้น</title>
+<style>
+  :root {
+    --bg: #0d131c;
+    --panel: #1a2433;
+    --text: #e8e6e0;
+    --muted: #9aa5b5;
+    --accent: #e8a04c;
+    --aura: #ffd27a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Segoe UI", "Noto Sans Thai UI", "Noto Sans Thai", Tahoma, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+  }
+  #game {
+    /* เต็มจอทุกอุปกรณ์ รองรับ Dynamic Island / รู钥匙 notch ผ่าน safe-area */
+    position: absolute;
+    top: env(safe-area-inset-top, 0px);
+    left: env(safe-area-inset-left, 0px);
+    right: env(safe-area-inset-right, 0px);
+    bottom: env(safe-area-inset-bottom, 0px);
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    background: var(--bg);
+  }
+  /* บนจอกว้าง (คอม/แท็บเล็ตแนวนอน) จะยึดกรอบแนวตั้งกลางจอ ให้เล่นแบบมือถือเหมือนกัน */
+  @media (min-aspect-ratio: 3/4) {
+    body { position: static; display: flex; justify-content: center; align-items: center; background: #070b12; }
+    #game {
+      position: relative;
+      top: auto; left: auto; right: auto; bottom: auto;
+      height: min(96vh, 96dvh);
+      aspect-ratio: 9 / 16;
+      border-radius: 18px;
+      box-shadow: 0 14px 50px rgba(0,0,0,.6);
+    }
+  }
+  #bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #overlay-cold {
+    position: absolute;
+    inset: 0;
+    background: rgba(40, 70, 120, 0.35); /* ความหนาวของฉาก ลดลงเมื่อ warmth สูง */
+    transition: background 1.2s ease;
+    pointer-events: none;
+  }
+  /* ===== ตัวละคร / วัตถุในฉาก ===== */
+  .actor {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .actor img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .shiver { animation: shiver .12s infinite; }
+  @keyframes shiver {
+    0%   { transform: translate(-50%, -50%) rotate(0deg); }
+    25%  { transform: translate(-51%, -50.5%) rotate(-0.7deg); }
+    50%  { transform: translate(-49.5%, -50%) rotate(0deg); }
+    75%  { transform: translate(-50.5%, -49.5%) rotate(0.7deg); }
+    100% { transform: translate(-50%, -50%) rotate(0deg); }
+  }
+  /* ===== วัตถุที่คลิกได้ ===== */
+  .hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: filter .2s;
+  }
+  .hotspot img, .hotspot .emoji {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 10px var(--aura));
+    animation: aura 1.8s ease-in-out infinite;
+  }
+  .hotspot .emoji {
+    font-size: clamp(2rem, 9vw, 3rem);
+    text-align: center;
+    line-height: 1.2;
+  }
+  @keyframes aura {
+    0%, 100% { filter: drop-shadow(0 0 6px rgba(255,210,122,.45)); }
+    50%      { filter: drop-shadow(0 0 18px rgba(255,210,122,.95)); }
+  }
+  /* idle นานเกินไป → กระพริบเตือน */
+  .hotspot.nudge img, .hotspot.nudge .emoji { animation: nudge 1s infinite; }
+  @keyframes nudge {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: .35; transform: scale(1.12); }
+  }
+  .hotspot:hover { filter: brightness(1.25); }
+  .hotspot:active { transform: translate(-50%, -50%) scale(.94); }
+
+  /* ===== ข้อความสั้นๆ ลอยล่าง (น้อยที่สุด) ===== */
+  #caption {
+    position: absolute;
+    left: 50%;
+    bottom: 2.5%;
+    transform: translateX(-50%);
+    max-width: 86%;
+    background: rgba(10, 15, 24, .82);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: clamp(.85rem, 2.2vw, 1.05rem);
+    text-align: center;
+    line-height: 1.7;
+    backdrop-filter: blur(4px);
+    transition: opacity .4s;
+    white-space: pre-wrap;
+    z-index: 30;
+    pointer-events: none;
+  }
+  /* ===== แถบสถานะ icon ===== */
+  #hud {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    display: flex;
+    gap: 14px;
+    font-size: 1.3rem;
+    background: rgba(10, 15, 24, .55);
+    padding: 6px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  #hud .stat { display: flex; align-items: center; gap: 5px; }
+  #hud .dots { font-size: .8rem; letter-spacing: 1px; color: var(--aura); }
+  /* ฉากจบ */
+  #ending {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 12, 20, .88);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+    padding: 30px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+  #ending .title { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+  #restart {
+    background: var(--accent);
+    color: #1a1409;
+    border: none;
+    padding: 12px 34px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  #restart:hover { filter: brightness(1.1); }
+  .fade-in { animation: fadeIn .6s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  /* หิมะตก */
+  .snow {
+    position: absolute;
+    top: -5vh;
+    color: #fff;
+    opacity: .7;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) translateX(6vw); }
+  }
+</style>
+</head>
+<body>
+<div id="game">
+  <img id="bg" src="assets/bg-house-portrait.png" alt="">
+  <div id="overlay-cold"></div>
+  <div id="hud">
+    <div class="stat">🔥<span class="dots" id="hud-warmth"></span></div>
+    <div class="stat">💛<span class="dots" id="hud-trust"></span></div>
+  </div>
+  <div id="caption"></div>
+  <div id="ending" style="display:none"></div>
+</div>
+<script src="story.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
