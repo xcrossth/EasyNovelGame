@@ -133,25 +133,38 @@
     text-shadow: 0 0 6px #000;
   }
 
-  /* ===== ข้อความสั้นๆ ลอยล่าง (น้อยที่สุด) ===== */
+  /* ===== ข้อความสั้นๆ ลอยล่าง (แบ่งหน้า + พิมพ์ทีละตัว) ===== */
   #caption {
     position: absolute;
     left: 50%;
     bottom: 2.5%;
     transform: translateX(-50%);
-    max-width: 86%;
+    width: min(92%, 560px);
     background: rgba(10, 15, 24, .82);
     border: 1px solid rgba(255,255,255,.12);
     border-radius: 12px;
-    padding: 10px 20px;
+    padding: 12px 20px 16px;
     font-size: clamp(.85rem, 2.2vw, 1.05rem);
     text-align: center;
-    line-height: 1.7;
+    line-height: 1.8;
     backdrop-filter: blur(4px);
     transition: opacity .4s;
     white-space: pre-wrap;
     z-index: 30;
-    pointer-events: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #caption .more {
+    position: absolute;
+    right: 14px;
+    bottom: 4px;
+    font-size: .8rem;
+    color: var(--accent);
+    animation: bounce-hint 1.2s ease-in-out infinite;
+  }
+  @keyframes bounce-hint {
+    0%, 100% { transform: translateY(0); opacity: .6; }
+    50% { transform: translateY(3px); opacity: 1; }
   }
   /* ===== แถบสถานะ icon ===== */
   #hud {

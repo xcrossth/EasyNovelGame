@@ -136,9 +136,79 @@ function makeWind(n) {
   }
 }
 
+// ===== ข้อความแบบพิมพ์ทีละตัว + แบ่งหน้า (แยกหน้าด้วยบรรทัดว่าง) =====
+let captionPages = [];
+let pageIndex = 0;
+let typeTimer = null;
+let typing = false;
+let onCaptionDone = null;
+
+function startCaption(text, done) {
+  clearInterval(typeTimer);
+  onCaptionDone = done;
+  captionPages = (text || "").split(/\n\s*\n/).filter((p) => p.trim());
+  pageIndex = 0;
+  if (!captionPages.length) { captionEl.style.display = "none"; finishCaption(); return; }
+  captionEl.style.display = "";
+  showPage();
+}
+
+function showPage() {
+  const page = captionPages[pageIndex].trim();
+  const graphemes = (window.Intl && Intl.Segmenter)
+    ? [...new Intl.Segmenter("th", { granularity: "grapheme" }).segment(page)].map((s) => s.segment)
+    : Array.from(page);
+  let i = 0;
+  typing = true;
+  captionEl.textContent = "";
+  const more = document.createElement("span");
+  more.className = "more";
+  more.textContent = pageIndex < captionPages.length - 1 ? "▼ แตะเพื่ออ่านต่อ" : "▼";
+  more.style.display = "none";
+  captionEl.appendChild(document.createTextNode(""));
+  captionEl.appendChild(more);
+  const textNode = captionEl.firstChild;
+  typeTimer = setInterval(() => {
+    if (i < graphemes.length) {
+      textNode.data += graphemes[i++];
+    } else {
+      clearInterval(typeTimer);
+      typing = false;
+      more.style.display = "";
+    }
+  }, 30);
+}
+
+function captionTapped() {
+  if (typing) {
+    // แตะตอนกำลังพิมพ์ = แสดงข้อความเต็มทันที
+    clearInterval(typeTimer);
+    typing = false;
+    const page = captionPages[pageIndex].trim();
+    captionEl.firstChild.data = page;
+    captionEl.querySelector(".more").style.display = "";
+    return;
+  }
+  pageIndex++;
+  if (pageIndex < captionPages.length) {
+    showPage();
+  } else {
+    finishCaption();
+  }
+}
+
+function finishCaption() {
+  captionEl.onclick = null;
+  const cb = onCaptionDone;
+  onCaptionDone = null;
+  if (cb) cb();
+}
+captionEl.addEventListener("click", (e) => { e.stopPropagation(); captionTapped(); });
+
 function gotoScene(id) {
   currentSceneId = id;
   clearDynamic();
+  clearInterval(typeTimer);
   const scene = STORY[id];
 
   if (scene.dynamic === "ending") {
@@ -165,47 +235,48 @@ function gotoScene(id) {
   }
 
   endingEl.style.display = "none";
-  captionEl.style.display = "";
-  captionEl.textContent = scene.caption || "";
   if (scene.bg) bgEl.src = scene.bg;
   applyFx(scene.fx);
 
-  (scene.actors || []).forEach((a) => {
-    const el = document.createElement("div");
-    el.className = "actor" + (a.shiver ? " shiver" : "");
-    el.style.left = a.x + "%";
-    el.style.top = Math.min(a.y, 76) + "%"; // ไม่ให้ตัวละครตกไปโดนแถบข้อความ
-    el.style.width = a.w + "%";
-    el.innerHTML = `<img src="${a.img}" alt="">`;
-    gameEl.appendChild(el);
-  });
+  // วัตถุจะโผล่หลังข้อความอ่านจบ เพื่อไม่ให้กดข้ามเนื้อเรื่อง
+  startCaption(scene.caption, () => {
+    (scene.actors || []).forEach((a) => {
+      const el = document.createElement("div");
+      el.className = "actor" + (a.shiver ? " shiver" : "");
+      el.style.left = a.x + "%";
+      el.style.top = Math.min(a.y, 76) + "%";
+      el.style.width = a.w + "%";
+      el.innerHTML = `<img src="${a.img}" alt="">`;
+      gameEl.appendChild(el);
+    });
 
-  (scene.hotspots || []).forEach((h) => {
-    const ok = meetsRequirement(h.requires);
-    const el = document.createElement("div");
-    el.className = "hotspot" + (ok ? " fade-in" : " locked");
-    el.style.left = h.x + "%";
-    el.style.top = Math.min(h.y, 82) + "%"; // เพดาน: วัตถุไม่ให้ต่ำกว่าแถบข้อความ
-    el.style.width = h.w + "%";
-    el.innerHTML = h.img ? `<img src="${h.img}" alt="">` : `<div class="emoji">❔</div>`;
-    if (!ok) el.innerHTML += `<div class="lock">🔒</div>`;
-    el.onclick = () => {
-      if (!ok) return;
-      if (h.effects) {
-        flags.warmth = Math.max(0, flags.warmth + (h.effects.warmth || 0));
-        flags.trust = Math.max(0, flags.trust + (h.effects.trust || 0));
-      }
-      if (h.set) Object.assign(flags, h.set);
-      renderHUD();
-      gotoScene(h.next);
-    };
-    gameEl.appendChild(el);
-  });
+    (scene.hotspots || []).forEach((h) => {
+      const ok = meetsRequirement(h.requires);
+      const el = document.createElement("div");
+      el.className = "hotspot" + (ok ? " fade-in" : " locked");
+      el.style.left = h.x + "%";
+      el.style.top = Math.min(h.y, 82) + "%";
+      el.style.width = h.w + "%";
+      el.innerHTML = h.img ? `<img src="${h.img}" alt="">` : `<div class="emoji">❔</div>`;
+      if (!ok) el.innerHTML += `<div class="lock">🔒</div>`;
+      el.onclick = (ev) => {
+        ev.stopPropagation();
+        if (!ok) return;
+        if (h.effects) {
+          flags.warmth = Math.max(0, flags.warmth + (h.effects.warmth || 0));
+          flags.trust = Math.max(0, flags.trust + (h.effects.trust || 0));
+        }
+        if (h.set) Object.assign(flags, h.set);
+        renderHUD();
+        gotoScene(h.next);
+      };
+      gameEl.appendChild(el);
+    });
 
-  // ถ้าผู้เล่นเฉยๆ นาน 8 วิ ให้วัตถุกระพริบเตือน
-  nudgeTimer = setTimeout(() => {
-    gameEl.querySelectorAll(".hotspot:not(.locked)").forEach((el) => el.classList.add("nudge"));
-  }, 8000);
+    nudgeTimer = setTimeout(() => {
+      gameEl.querySelectorAll(".hotspot:not(.locked)").forEach((el) => el.classList.add("nudge"));
+    }, 8000);
+  });
 }
 
 function restart() {
