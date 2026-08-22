@@ -75,7 +75,7 @@ function gotoScene(id) {
     const el = document.createElement("div");
     el.className = "actor" + (a.shiver ? " shiver" : "");
     el.style.left = a.x + "%";
-    el.style.top = a.y + "%";
+    el.style.top = Math.min(a.y, 76) + "%"; // ไม่ให้ตัวละครตกไปโดนแถบข้อความ
     el.style.width = a.w + "%";
     el.innerHTML = `<img src="${a.img}" alt="">`;
     gameEl.appendChild(el);
@@ -86,7 +86,7 @@ function gotoScene(id) {
     const el = document.createElement("div");
     el.className = "hotspot" + (ok ? " fade-in" : " locked");
     el.style.left = h.x + "%";
-    el.style.top = h.y + "%";
+    el.style.top = Math.min(h.y, 82) + "%"; // เพดาน: วัตถุไม่ให้ต่ำกว่าแถบข้อความ
     el.style.width = h.w + "%";
     el.innerHTML = h.img
       ? `<img src="${h.img}" alt="">`

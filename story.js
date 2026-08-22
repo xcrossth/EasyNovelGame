@@ -66,6 +66,7 @@ const STORY = {
   },
 
   a1_evening: {
+    bg: "assets/bg-night.png",
     caption: "🌃 ค่ำแล้ว เสียงลมหวีดผ่านช่องไม้ซีก\nมะลิเริ่มหลับ แต่แม่ยังเพ่งมองเปลวเทียน",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: true }],
     hotspots: [
@@ -76,6 +77,7 @@ const STORY = {
   },
 
   a1_talk: {
+    bg: "assets/bg-night.png",
     caption: "💬 \"พี่สัญญาไหม... ว่าจะไม่ทิ้งแม่กับมะลิไปไหน\"\n\"สัญญาสิ\" มือเล็กๆ กำมือพี่แน่น",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: false }],
     hotspots: [
@@ -94,6 +96,7 @@ const STORY = {
   // ═══════════════ องก์ 2 — ของแลกเปลี่ยน ═══════════════
 
   a2_intro: {
+    bg: "assets/bg-morning.png",
     caption: "🗓 วันที่สอง หิมะโปรยหนักทั้งวัน\nd้านนอกเห็นป้าแก้มกำลังกุลีกุล้ออะไรซักอย่าง",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 60, w: 42, shiver: false }],
     hotspots: [
@@ -104,6 +107,7 @@ const STORY = {
   },
 
   a2_help: {
+    bg: "assets/bg-morning.png",
     caption: "🤝 ช่วยป้าแก้มปัดหิมะหน้าบ้าน\n\"หนูดีจริงนะ... เดี๋ยวเย็นนี้ป้าจะมาหา\"",
     actors: [{ img: "assets/sprite-aunt.png", x: 50, y: 52, w: 40, shiver: false }],
     hotspots: [
@@ -112,6 +116,7 @@ const STORY = {
   },
 
   a2_chore: {
+    bg: "assets/bg-morning.png",
     caption: "🪵 เก็บฟืนเพิ่มและหุงข้าวเย็น\nยังดีที่คืนนี้ยังมีของกิน",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: false },
              { img: "assets/obj-firewood.png", x: 26, y: 62, w: 18 }],
@@ -163,6 +168,7 @@ const STORY = {
   },
 
   a2_dream: {
+    bg: "assets/bg-night.png",
     caption: "🌃 ดึกแล้ว... มะลิสะดุ้งตื่นจากฝันร้าย\nร้องไห้สั่นๆ \"ฝันว่าพ่อยืนอยู่ไกลๆ แล้วเดินหายไป\"",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: true }],
     hotspots: [
@@ -172,6 +178,7 @@ const STORY = {
   },
 
   a2_comfort: {
+    bg: "assets/bg-night.png",
     caption: "🤍 \"พ่อไม่ได้หายไปไหนหรอก... พ่ออยู่ในนี้\"\nชี้ที่หัวใจมะลิเบาๆ จนเธอหยุดไห้และหลับตา",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: false }],
     hotspots: [
@@ -180,6 +187,7 @@ const STORY = {
   },
 
   a2_end: {
+    bg: "assets/bg-dawn.png",
     caption: "🌅 วันที่สาม... เช้านี้บ้านเงียบผิดปกติ",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: true }],
     hotspots: [
@@ -190,6 +198,7 @@ const STORY = {
   // ═══════════════ องก์ 3 — ตัวเลือกหนักที่สุด ═══════════════
 
   a3_crisis: {
+    bg: "assets/bg-dawn.png",
     caption: "💦 แม่กำเริบ! หอบแรงจนพูดไม่ออก\nยาหมดเกลี้ยง... ต้องเลือกเดี๋ยวนี้",
     actors: [{ img: "assets/sprite-mom-sick.png", x: 50, y: 55, w: 48, shiver: false }],
     hotspots: [
@@ -208,6 +217,7 @@ const STORY = {
   },
 
   a3_aunt: {
+    bg: "assets/bg-aunt.png",
     caption: "🤝 ป้าแก้มเปิดประตูทันทีที่เห็นหน้า\นาทีที่หนาวที่สุด... ความดีเก่าๆ ยังใช้ได้",
     actors: [{ img: "assets/sprite-aunt.png", x: 50, y: 46, w: 38, shiver: false }],
     hotspots: [
@@ -224,6 +234,7 @@ const STORY = {
   },
 
   a3_gamble: {
+    bg: "assets/bg-night.png",
     caption: "🍵 ต้มยาป้อนแม้ทีละช้อน... นาทีผ่านไปช้าเหมือนชั่วโมง\nแล้วเสียงหายใจก็... นิ่งขึ้น สม่ำเสมอขึ้น",
     actors: [{ img: "assets/sprite-mom-sick.png", x: 50, y: 55, w: 48, shiver: false }],
     hotspots: [
@@ -232,6 +243,7 @@ const STORY = {
   },
 
   a3_recover: {
+    bg: "assets/bg-night.png",
     caption: "🌙 ค่ำนั้น แม่หลับสบายเป็นครั้งแรกในหลายคืน\nมะลินอนกอดแขนพี่ ไม่ยอมปล่อย",
     actors: [{ img: "assets/sprite-mom-sick.png", x: 50, y: 55, w: 48, shiver: false }],
     hotspots: [
@@ -242,6 +254,7 @@ const STORY = {
   // ═══════════════ องก์ 4 — กล่องของพ่อ ═══════════════
 
   a4_intro: {
+    bg: "assets/bg-morning.png",
     caption: "🗓 วันที่สี่ แม่อาการดีขึ้นมาก\nมะลิลากมือพี่ไปชี้มุมหนึ่งของบ้าน \"แม่บอกว่าเวลาแล้ว\"",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: false }],
     hotspots: [
@@ -251,6 +264,7 @@ const STORY = {
   },
 
   a4_search: {
+    bg: "assets/bg-morning.png",
     caption: "🔎 \"พ่อเคยซ่อนกุญแจไว้ใต้แผ่นไม้นี้! มะลิจำได้!\"\nฝุ่นปลิวว่อน... แล้วบางอย่างก็สะท้อนแสงเทียน",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 40, w: 42, shiver: false }],
     hotspots: [
@@ -259,6 +273,7 @@ const STORY = {
   },
 
   a4_open: {
+    bg: "assets/bg-morning.png",
     caption: "📦 กุญแจหมุนหนึ่งรอบ... ฝาไม้เปิดออกครั้งแรกในรอบหลายปี\nข้างในมีซองจดหมายเก่า และถุงเงินเล็กๆ",
     actors: [{ img: "assets/obj-box.png", x: 50, y: 55, w: 34 }],
     hotspots: [
@@ -268,6 +283,7 @@ const STORY = {
   },
 
   a4_letter: {
+    bg: "assets/bg-morning.png",
     caption: "✉️ \"ถ้าลูกได้อ่านจดหมายนี้ แปลว่าถึงเวลาแล้ว\nพ่อขอโทษที่ต้องไปก่อน แต่พ่อไม่เคยไปไหนเลย\"",
     actors: [{ img: "assets/obj-letter.png", x: 50, y: 50, w: 30 }],
     hotspots: [
@@ -276,6 +292,7 @@ const STORY = {
   },
 
   a4_letter2: {
+    bg: "assets/bg-morning.png",
     caption: "\"ลูกพี่... ดูแลแม่กับน้อง เหมือนที่พ่อเคยดูแล\nแล้วบอกมะลิด้วยว่าพ่อรักเธอแค่ไหน\"",
     actors: [{ img: "assets/obj-letter.png", x: 50, y: 50, w: 30 }],
     hotspots: [
@@ -285,6 +302,7 @@ const STORY = {
   },
 
   a4_money: {
+    bg: "assets/bg-morning.png",
     caption: "💰 ถุงเงินของพ่อ — เก็บไว้ตั้งแต่ยังไม่มีมะลิ\nพอดีสำหรับซ่อมหลังคา และซื้อยาให้แม่ตลอดฤดูหนาว",
     actors: [{ img: "assets/obj-money.png", x: 50, y: 50, w: 30 }],
     hotspots: [
@@ -294,6 +312,7 @@ const STORY = {
   },
 
   a4_after: {
+    bg: "assets/bg-night.png",
     caption: "🕯 คืนนั้นบ้านเงียบ แต่ใจของทุกคนเต็มกว่าเมื่อไหร่\nนอกหน้าต่าง... เมฆพายุกำลังก่อตัวขึ้นไกลๆ",
     actors: [{ img: "assets/sprite-mom-daughter.png", x: 50, y: 55, w: 42, shiver: false }],
     hotspots: [
@@ -348,6 +367,7 @@ const STORY = {
   },
 
   a5_knock: {
+    bg: "assets/bg-aunt.png",
     caption: "🤝 เปิดประตูออกไป... ป้าแก้มยืนถือตะเกียงรออยู่\n\"ป้ารอแกอยู่นะ มา เข้าบ้านป้าสิ\"",
     bg: "assets/bg-storm.png",
     actors: [{ img: "assets/sprite-aunt.png", x: 50, y: 48, w: 40, shiver: false }],
