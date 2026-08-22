@@ -250,7 +250,8 @@ const STORY = {
   a2_talk: {
     bg: "assets/bg-fire.png", fx: ["embers", "flicker"],
     caption: "ป้ารับเกลือไปด้วยรอยยิ้มกว้าง แล้วถอดรองเท้าเปียกๆ นั่งลงข้างเตาไฟ\n\n\"ให้ป้าเล่าเรื่องมึงฟังมั้ย... เรื่องสมัยที่พ่อแกยังอยู่\"\n\nแม่ที่นั่งอยู่ด้วยเงียบไป... แต่สายตาบอกว่าอยากฟัง\n\nเรื่องที่ไม่มีใครเคยเล่าให้ลูกฟัง กำลังจะเริ่มขึ้น",
-    hotspots: [
+    actors: [{ img: "assets/sprite-aunt.png", x: 50, y: 52, w: 40 }],
+        hotspots: [
       { img: "assets/obj-tea.png", x: 28, y: 78, w: 14, effects: { trust: 1 }, set: { knowsBox: true }, next: "a2_boxhint" },
       { img: "assets/obj-fire.png", x: 72, y: 78, w: 14, effects: { warmth: 1 }, next: "a2_dadstory" },
     ],
@@ -259,7 +260,8 @@ const STORY = {
   a2_dadstory: {
     bg: "assets/bg-fire.png", fx: ["embers", "flicker"],
     caption: "\"พ่อแกน่ะ...\" ป้าหัวเราะเบาๆ น้ำตาคลอเบ้า\n\n\"ตอนหนาวเข้า เค้าจะเลิกงานก่อนพระอาทิตย์ตกทุกวันเลยนะ\n\nบอกว่าต้องรีบกลับไปก่อไฟ... ให้แม่แกไม่ต้องสั่น\"\n\n\"แกน่ะ เหมือนพ่อแกเป๊ะ ตามันเหมือนกันเลย ตอนที่มันมองคนที่มันรัก\"",
-    hotspots: [
+    actors: [{ img: "assets/sprite-aunt.png", x: 50, y: 52, w: 40 }],
+        hotspots: [
       { img: "assets/obj-tea.png", x: 30, y: 78, w: 14, effects: { trust: 1 }, set: { knowsBox: true }, next: "a2_boxhint" },
       { img: "assets/obj-heart.png", x: 70, y: 78, w: 14, effects: { trust: 1 }, next: "a2_dream" },
     ],
@@ -268,7 +270,8 @@ const STORY = {
   a2_boxhint: {
     bg: "assets/bg-fire.png", fx: ["embers", "flicker"],
     caption: "\"นี่มะลิ... ป้าขอบอกอะไรหน่อยได้มั้ย\"\n\nป้าก้มลงไปพูดกับมะลิเสียงเบา แต่ทุกคนได้ยินหมด\n\n\"กล่องไม้ของพ่อแกน่ะ ป้าเห็นเค้าซ่อนไว้ที่โรงนาเก่า ตอนก่อนจะไป...\"\n\n\"แกรู้ไหม... ว่าข้างในมีอะไร\"",
-    hotspots: [
+    actors: [{ img: "assets/sprite-aunt.png", x: 50, y: 52, w: 40 }],
+        hotspots: [
       { img: "assets/obj-box.png", x: 50, y: 80, w: 20, effects: { trust: 1 }, next: "a2_dream" },
     ],
   },
@@ -446,7 +449,8 @@ const STORY = {
   a4_letter: {
     bg: "assets/bg-window.png", fx: ["snow"],
     caption: "\"ถ้าลูกได้อ่านจดหมายนี้ แปลว่าถึงเวลาแล้ว\"\n\nลายมือของพ่อ — เอียงๆ ตัวเล็ก เหมือนคนที่เขียนรีบๆ แต่ระวังทุกตัวอักษร\n\n\"พ่อขอโทษที่ต้องไปก่อน ก่อนที่จะได้เห็นพวกเธอโต\n\nแต่พ่ออยากให้รู้ว่า... พ่อไม่เคยไปไหนเลย\"",
-    hotspots: [
+    actors: [{ img: "assets/obj-letter.png", x: 50, y: 50, w: 30 }],
+        hotspots: [
       { img: "assets/obj-heart.png", x: 50, y: 78, w: 14, next: "a4_letter2" },
     ],
   },
@@ -454,7 +458,8 @@ const STORY = {
   a4_letter2: {
     bg: "assets/bg-window.png", fx: ["snow"],
     caption: "\"ลูกพี่... พ่อรู้ว่าแกต้องเป็นคนอ่านจดหมายนี้ก่อนใคร\n\nดูแลแม่กับน้อง เหมือนที่พ่อเคยดูแล — แกทำได้อยู่แล้ว พ่อเห็น\"\n\n\"อย่าได้โกรธแม่ที่เขาปิดบังเรื่องของพ่อนะ... เขาทำเพื่อพวกเธอทั้งนั้น\n\nทุกคืนที่เขาร้องไห้ มันคือรักที่ไม่รู้จะบอกยังไง\"\"",
-    hotspots: [
+    actors: [{ img: "assets/obj-letter.png", x: 50, y: 50, w: 30 }],
+        hotspots: [
       { img: "assets/obj-heart.png", x: 30, y: 78, w: 14, effects: { trust: 1, warmth: 1 }, next: "a4_memory" },
       { img: "assets/obj-money.png", x: 70, y: 78, w: 16, effects: { warmth: 1 }, next: "a4_memory" },
     ],

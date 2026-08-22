@@ -238,18 +238,19 @@ function gotoScene(id) {
   if (scene.bg) bgEl.src = scene.bg;
   applyFx(scene.fx);
 
-  // วัตถุจะโผล่หลังข้อความอ่านจบ เพื่อไม่ให้กดข้ามเนื้อเรื่อง
-  startCaption(scene.caption, () => {
-    (scene.actors || []).forEach((a) => {
-      const el = document.createElement("div");
-      el.className = "actor" + (a.shiver ? " shiver" : "");
-      el.style.left = a.x + "%";
-      el.style.top = Math.min(a.y, 76) + "%";
-      el.style.width = a.w + "%";
-      el.innerHTML = `<img src="${a.img}" alt="">`;
-      gameEl.appendChild(el);
-    });
+  // ตัวละคร/วัตถุประกอบขึ้นทันที ไม่ให้จอว่างระหว่างพิมพ์ข้อความ
+  (scene.actors || []).forEach((a) => {
+    const el = document.createElement("div");
+    el.className = "actor" + (a.shiver ? " shiver" : "");
+    el.style.left = a.x + "%";
+    el.style.top = Math.min(a.y, 76) + "%";
+    el.style.width = a.w + "%";
+    el.innerHTML = `<img src="${a.img}" alt="">`;
+    gameEl.appendChild(el);
+  });
 
+  // วัตถุที่คลิกได้จะโผล่หลังข้อความอ่านจบ เพื่อไม่ให้กดข้ามเนื้อเรื่อง
+  startCaption(scene.caption, () => {
     (scene.hotspots || []).forEach((h) => {
       const ok = meetsRequirement(h.requires);
       const el = document.createElement("div");
