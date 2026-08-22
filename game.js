@@ -1,122 +1,48 @@
-// ===== ระบบเสียง =====
-// BGM สลับตามกลุ่มฉาก + SFX คลิก/เหตุการณ์ (เบราว์เซอร์ต้องรอผู้เล่นแตะครั้งแรกก่อน)
-const BGM = {
-  main: "assets/audio/bgm-main.mp3",
-  crisis: "assets/audio/bgm-crisis.mp3",
-  storm: "assets/audio/bgm-storm.mp3",
-  warm: "assets/audio/bgm-warm.mp3",
-};
-const SCENE_BGM = {
-  a3_crisis: "crisis", a3_path: "crisis", a3_river: "crisis", a3_clinic: "crisis",
-  a3_return: "crisis", a3_aunt_door: "crisis", a3_aunt_in: "crisis",
-  a3_herb_search: "crisis", a3_gamble: "crisis",
-  a5_prep: "storm", a5_intro: "storm", a5_huddle: "storm", a5_fireout: "storm", a5_escape: "storm",
-  a5_relight: "warm", a5_knock: "warm", a5_dawn: "warm",
-};
-const SCENE_SFX = {
-  a2_knock: "assets/audio/sfx-knock.mp3",
-  a4_open: "assets/audio/sfx-open.mp3",
-};
-let bgmAudio = new Audio();
-bgmAudio.loop = true;
-bgmAudio.volume = 0.45;
-let currentBgmKey = null;
-let muted = false;
-let sfxCache = {};
-for (const p of ["assets/audio/sfx-click.mp3"]) {
-  sfxCache[p] = new Audio(p);
-  sfxCache[p].volume = 0.6;
-}
-function playSfx(path) {
-  if (muted) return;
-  const a = (sfxCache[path] ||= new Audio(path));
-  a.currentTime = 0;
-  a.volume = 0.6;
-  a.play().catch(() => {});
-}
-function setBgm(key) {
-  if (key === currentBgmKey) return;
-  currentBgmKey = key;
-  if (muted) return;
-  bgmAudio.src = BGM[key];
-  bgmAudio.play().catch(() => {});
-}
-document.getElementById("mute").onclick = () => {
-  muted = !muted;
-  document.getElementById("mute").textContent = muted ? "🔇" : "🔊";
-  if (muted) bgmAudio.pause();
-  else { bgmAudio.play().catch(() => {}); }
-};
-// แตะแรกของเซสชัน = เริ่มเสียง (นโยบาย autoplay ของเบราว์เซอร์)
-document.body.addEventListener(
-  "pointerdown",
-  () => {
-    if (!muted && !currentBgmKey) setBgm(SCENE_BGM[currentSceneId] || "main");
-    else if (!muted && bgmAudio.paused) bgmAudio.play().catch(() => {});
+// ===== ตัวเกมหลัก — รองรับหลายเรื่อง (multi-story) =====
+
+// คำจำกัดความของแต่ละเรื่อง
+const GAMES = {
+  s1: {
+    story: () => STORY,
+    compute: (f) => computeEnding(f),
+    start: "start",
+    flags0: () => ({ warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false }),
+    hud: [["🔥", "warmth"], ["💛", "trust"]],
+    dotsMax: 8,
+    coldOverlay: true,
+    bgDefault: "assets/bg-house-portrait.png",
+    bgm: {
+      a3_crisis: "crisis", a3_path: "crisis", a3_river: "crisis", a3_clinic: "crisis",
+      a3_return: "crisis", a3_aunt_door: "crisis", a3_aunt_in: "crisis",
+      a3_herb_search: "crisis", a3_gamble: "crisis",
+      a5_prep: "storm", a5_intro: "storm", a5_huddle: "storm", a5_fireout: "storm", a5_escape: "storm",
+      a5_relight: "warm", a5_knock: "warm", a5_dawn: "warm",
+    },
+    sfx: { a2_knock: "assets/audio/sfx-knock.mp3", a4_open: "assets/audio/sfx-open.mp3" },
   },
-  { once: false }
-);
+  s2: {
+    story: () => STORY2,
+    compute: (f) => computeEnding2(f),
+    start: "s2_start",
+    flags0: () => ({ dignity: 0, clue: 0, hasPhoto: false, hasDoc: false, maliSuspects: false, knowsTruth: false, withTheeradech: false }),
+    hud: [["👑", "dignity"], ["🔍", "clue"]],
+    dotsMax: 8,
+    coldOverlay: false,
+    bgDefault: "assets/s2/foyer.png",
+    bgm: {
+      s2_e3_start: "crisis", s2_e3_give: "crisis", s2_e3_refuse: "crisis", s2_e3_lie: "crisis",
+      s2_e3_rain: "storm", s2_e3_defend: "storm", s2_e3_evidence: "storm", s2_e3_leave: "storm",
+      s2_e4_start: "crisis", s2_e4_talk: "crisis", s2_e4_file: "crisis", s2_e4_deal: "crisis",
+      s2_e2_mali_saw: "crisis", s2_e2_confront: "crisis",
+    },
+    sfx: {},
+  },
+};
 
-// ===== รายการนิยาย (หน้าเลือกเรื่อง) =====
-const STORIES = [
-  { id: 1, title: "ฤดูหนาวปีนั้น", cover: "assets/cover1.png", status: "play", badge: "เล่นได้เลย" },
-  { id: 2, title: "ฤดูฝนที่หายไป", cover: "assets/cover2.png", status: "wip", badge: "กำลังเขียนบท" },
-  { id: 3, title: "ฤดูร้อนสุดท้าย", cover: "assets/cover3.png", status: "soon", badge: "เร็วๆ นี้" },
-  { id: 4, title: "ฤดูใบไม้ร่วงสีแดง", cover: "assets/cover4.png", status: "soon", badge: "เร็วๆ นี้" },
-];
-const menuEl = document.getElementById("menu");
-const hudEl = document.getElementById("hud");
-const toastEl = document.getElementById("toast");
-
-function showToast(msg) {
-  toastEl.textContent = msg;
-  toastEl.classList.add("show");
-  setTimeout(() => toastEl.classList.remove("show"), 1800);
-}
-
-function buildMenu() {
-  const grid = document.getElementById("menu-grid");
-  grid.innerHTML = "";
-  for (const st of STORIES) {
-    const card = document.createElement("div");
-    card.className = "story-card" + (st.status === "play" ? "" : " locked");
-    card.innerHTML =
-      `<img src="${st.cover}" alt="">
-       <div class="veil"></div>
-       <div class="info">
-         <span class="name">${st.title}</span>
-         <span class="badge ${st.status}">${st.badge}</span>
-       </div>`;
-    card.onclick = () => {
-      if (st.status === "play") startStory1();
-      else if (st.status === "wip") showToast("🖋 " + st.title + " — กำลังเขียนบทอยู่...");
-      else showToast("✨ " + st.title + " — เร็วๆ นี้");
-    };
-    grid.appendChild(card);
-  }
-}
-
-function showMenu() {
-  clearDynamic();
-  clearInterval(typeTimer);
-  captionEl.style.display = "none";
-  endingEl.style.display = "none";
-  hudEl.style.display = "none";
-  bgmAudio.pause();
-  currentBgmKey = null;
-  menuEl.style.display = "flex";
-}
-
-function startStory1() {
-  menuEl.style.display = "none";
-  hudEl.style.display = "";
-  restart();
-}
-
-// ===== ตัวเกมหลัก (point-and-click + fx บรรยากาศ) =====
-
-let flags = { warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false };
-let currentSceneId = "start";
+let curKey = null;
+let S = null;       // def ของเรื่องปัจจุบัน
+let flags = {};
+let currentSceneId = null;
 let nudgeTimer = null;
 const gameEl = document.getElementById("game");
 
@@ -124,6 +50,10 @@ const bgEl = document.getElementById("bg");
 const overlayEl = document.getElementById("overlay-cold");
 const captionEl = document.getElementById("caption");
 const endingEl = document.getElementById("ending");
+const hudEl = document.getElementById("hud");
+const hud1El = document.getElementById("hud-1");
+const hud2El = document.getElementById("hud-2");
+const epEl = document.getElementById("episode");
 
 function meetsRequirement(req) {
   if (!req) return true;
@@ -131,10 +61,14 @@ function meetsRequirement(req) {
 }
 
 function renderHUD() {
-  document.getElementById("hud-warmth").textContent = "●".repeat(Math.max(1, Math.min(8, flags.warmth)));
-  document.getElementById("hud-trust").textContent = "●".repeat(Math.max(1, Math.min(8, flags.trust)));
-  const a = Math.max(0, 0.38 - flags.warmth * 0.05);
-  overlayEl.style.background = `rgba(40, 70, 120, ${a})`;
+  if (!S) return;
+  const [[i1, k1], [i2, k2]] = S.hud;
+  hud1El.innerHTML = i1 + '<span class="dots">' + "●".repeat(Math.max(1, Math.min(S.dotsMax, flags[k1]))) + "</span>";
+  hud2El.innerHTML = i2 + '<span class="dots">' + "●".repeat(Math.max(1, Math.min(S.dotsMax, flags[k2]))) + "</span>";
+  if (S.coldOverlay) {
+    const a = Math.max(0, 0.38 - flags.warmth * 0.05);
+    overlayEl.style.background = `rgba(40, 70, 120, ${a})`;
+  } else overlayEl.style.background = "transparent";
 }
 
 function clearDynamic() {
@@ -160,98 +94,16 @@ function applyFx(list) {
     else if (fx === "shake") gameEl.classList.add("shake-screen");
   }
 }
+function makeSnow(n) { for (let i = 0; i < n; i++) { const s = document.createElement("div"); s.className = "snow"; s.textContent = "❅"; s.style.left = Math.random()*100+"%"; s.style.fontSize = .5+Math.random()+"rem"; s.style.animationDuration = 5+Math.random()*7+"s"; s.style.animationDelay = -Math.random()*10+"s"; gameEl.appendChild(s); } }
+function makePetals(n) { for (let i = 0; i < n; i++) { const p = document.createElement("div"); p.className = "petal"; p.style.left = Math.random()*100+"%"; p.style.animationDuration = 7+Math.random()*8+"s"; p.style.animationDelay = -Math.random()*12+"s"; gameEl.appendChild(p); } }
+function makeEmbers(n) { for (let i = 0; i < n; i++) { const e = document.createElement("div"); e.className = "ember"; e.style.left = 20+Math.random()*60+"%"; const d = 3+Math.random()*5; e.style.animationDuration = d+"s"; e.style.animationDelay = -Math.random()*d+"s"; gameEl.appendChild(e); } }
+function makeDust(n) { for (let i = 0; i < n; i++) { const d = document.createElement("div"); d.className = "dust"; d.style.left = Math.random()*100+"%"; d.style.top = 20+Math.random()*60+"%"; const dur = 4+Math.random()*6; d.style.animationDuration = dur+"s"; d.style.animationDelay = -Math.random()*dur+"s"; gameEl.appendChild(d); } }
+function makeSteam(n) { for (let i = 0; i < n; i++) { const s = document.createElement("div"); s.className = "steam"; s.style.left = 35+Math.random()*30+"%"; s.style.top = 55+Math.random()*15+"%"; const dur = 3+Math.random()*3; s.style.animationDuration = dur+"s"; s.style.animationDelay = -Math.random()*dur+"s"; gameEl.appendChild(s); } }
+function makeFog() { for (let i = 0; i < 2; i++) { const f = document.createElement("div"); f.className = "fx fog"; f.style.top = i===0?"30%":"60%"; f.style.animationDelay = i*-8+"s"; gameEl.appendChild(f); } }
+function makeFlicker() { const f = document.createElement("div"); f.className = "fx flicker"; gameEl.appendChild(f); }
+function makeWind(n) { for (let i = 0; i < n; i++) { const w = document.createElement("div"); w.className = "wind-line"; w.style.top = Math.random()*90+"%"; const dur = 1.5+Math.random()*2; w.style.animationDuration = dur+"s"; w.style.animationDelay = -Math.random()*6+"s"; gameEl.appendChild(w); } }
 
-function makeSnow(n) {
-  for (let i = 0; i < n; i++) {
-    const s = document.createElement("div");
-    s.className = "snow";
-    s.textContent = "❅";
-    s.style.left = Math.random() * 100 + "%";
-    s.style.fontSize = 0.5 + Math.random() + "rem";
-    s.style.animationDuration = 5 + Math.random() * 7 + "s";
-    s.style.animationDelay = -Math.random() * 10 + "s";
-    gameEl.appendChild(s);
-  }
-}
-
-function makePetals(n) {
-  for (let i = 0; i < n; i++) {
-    const p = document.createElement("div");
-    p.className = "petal";
-    p.style.left = Math.random() * 100 + "%";
-    p.style.animationDuration = 7 + Math.random() * 8 + "s";
-    p.style.animationDelay = -Math.random() * 12 + "s";
-    gameEl.appendChild(p);
-  }
-}
-
-function makeEmbers(n) {
-  for (let i = 0; i < n; i++) {
-    const e = document.createElement("div");
-    e.className = "ember";
-    e.style.left = 20 + Math.random() * 60 + "%";
-    const d = 3 + Math.random() * 5;
-    e.style.animationDuration = d + "s";
-    e.style.animationDelay = -Math.random() * d + "s";
-    gameEl.appendChild(e);
-  }
-}
-
-function makeDust(n) {
-  for (let i = 0; i < n; i++) {
-    const d = document.createElement("div");
-    d.className = "dust";
-    d.style.left = Math.random() * 100 + "%";
-    d.style.top = 20 + Math.random() * 60 + "%";
-    const dur = 4 + Math.random() * 6;
-    d.style.animationDuration = dur + "s";
-    d.style.animationDelay = -Math.random() * dur + "s";
-    gameEl.appendChild(d);
-  }
-}
-
-function makeSteam(n) {
-  for (let i = 0; i < n; i++) {
-    const s = document.createElement("div");
-    s.className = "steam";
-    s.style.left = 35 + Math.random() * 30 + "%";
-    s.style.top = 55 + Math.random() * 15 + "%";
-    const dur = 3 + Math.random() * 3;
-    s.style.animationDuration = dur + "s";
-    s.style.animationDelay = -Math.random() * dur + "s";
-    gameEl.appendChild(s);
-  }
-}
-
-function makeFog() {
-  for (let i = 0; i < 2; i++) {
-    const f = document.createElement("div");
-    f.className = "fx fog";
-    f.style.top = i === 0 ? "30%" : "60%";
-    f.style.animationDelay = i * -8 + "s";
-    gameEl.appendChild(f);
-  }
-}
-
-function makeFlicker() {
-  const f = document.createElement("div");
-  f.className = "fx flicker";
-  gameEl.appendChild(f);
-}
-
-function makeWind(n) {
-  for (let i = 0; i < n; i++) {
-    const w = document.createElement("div");
-    w.className = "wind-line";
-    w.style.top = Math.random() * 90 + "%";
-    const dur = 1.5 + Math.random() * 2;
-    w.style.animationDuration = dur + "s";
-    w.style.animationDelay = -Math.random() * 6 + "s";
-    gameEl.appendChild(w);
-  }
-}
-
-// ===== ข้อความแบบพิมพ์ทีละตัว + แบ่งหน้า (แยกหน้าด้วยบรรทัดว่าง) =====
+// ===== ข้อความแบบพิมพ์ทีละตัว + แบ่งหน้า =====
 let captionPages = [];
 let pageIndex = 0;
 let typeTimer = null;
@@ -267,7 +119,6 @@ function startCaption(text, done) {
   captionEl.style.display = "";
   showPage();
 }
-
 function showPage() {
   const page = captionPages[pageIndex].trim();
   const graphemes = (window.Intl && Intl.Segmenter)
@@ -284,34 +135,22 @@ function showPage() {
   captionEl.appendChild(more);
   const textNode = captionEl.firstChild;
   typeTimer = setInterval(() => {
-    if (i < graphemes.length) {
-      textNode.data += graphemes[i++];
-    } else {
-      clearInterval(typeTimer);
-      typing = false;
-      more.style.display = "";
-    }
+    if (i < graphemes.length) textNode.data += graphemes[i++];
+    else { clearInterval(typeTimer); typing = false; more.style.display = ""; }
   }, 30);
 }
-
 function captionTapped() {
   if (typing) {
-    // แตะตอนกำลังพิมพ์ = แสดงข้อความเต็มทันที
     clearInterval(typeTimer);
     typing = false;
-    const page = captionPages[pageIndex].trim();
-    captionEl.firstChild.data = page;
+    captionEl.firstChild.data = captionPages[pageIndex].trim();
     captionEl.querySelector(".more").style.display = "";
     return;
   }
   pageIndex++;
-  if (pageIndex < captionPages.length) {
-    showPage();
-  } else {
-    finishCaption();
-  }
+  if (pageIndex < captionPages.length) showPage();
+  else finishCaption();
 }
-
 function finishCaption() {
   captionEl.onclick = null;
   const cb = onCaptionDone;
@@ -320,15 +159,135 @@ function finishCaption() {
 }
 captionEl.addEventListener("click", (e) => { e.stopPropagation(); captionTapped(); });
 
+// ===== จอดำจบตอน (คลิฟแฮงเกอร์แบบละคร) =====
+function showEpisodeCard(ep, next) {
+  playSfx("assets/audio/sfx-click.mp3");
+  captionEl.style.display = "none";
+  epEl.querySelector(".ep-title").textContent = ep.title;
+  epEl.querySelector(".ep-teaser").textContent = ep.teaser;
+  epEl.style.display = "flex";
+  epEl.classList.remove("fade-in");
+  void epEl.offsetWidth;
+  epEl.classList.add("fade-in");
+  epEl.onclick = () => { epEl.style.display = "none"; gotoScene(next); };
+}
+
+// ===== ระบบเสียง =====
+const BGM = {
+  main: "assets/audio/bgm-main.mp3",
+  crisis: "assets/audio/bgm-crisis.mp3",
+  storm: "assets/audio/bgm-storm.mp3",
+  warm: "assets/audio/bgm-warm.mp3",
+};
+let bgmAudio = new Audio();
+bgmAudio.loop = true;
+bgmAudio.volume = 0.45;
+let currentBgmKey = null;
+let muted = false;
+let sfxCache = {};
+function playSfx(path) {
+  if (muted || !path) return;
+  const a = (sfxCache[path] ||= new Audio(path));
+  a.currentTime = 0;
+  a.volume = 0.6;
+  a.play().catch(() => {});
+}
+function setBgm(key) {
+  if (key === currentBgmKey) return;
+  currentBgmKey = key;
+  if (muted) return;
+  bgmAudio.src = BGM[key];
+  bgmAudio.play().catch(() => {});
+}
+document.getElementById("mute").onclick = () => {
+  muted = !muted;
+  document.getElementById("mute").textContent = muted ? "🔇" : "🔊";
+  if (muted) bgmAudio.pause();
+  else bgmAudio.play().catch(() => {});
+};
+document.body.addEventListener("pointerdown", () => {
+  if (!muted && !currentBgmKey && S) setBgm(S.bgm[currentSceneId] || "main");
+  else if (!muted && bgmAudio.paused) bgmAudio.play().catch(() => {});
+});
+
+// ===== หน้าเลือกนิยาย =====
+const STORIES = [
+  { key: "s1", title: "ฤดูหนาวปีนั้น", cover: "assets/cover1.png", status: "play", badge: "เล่นได้เลย" },
+  { key: "s2", title: "ฤดูฝนที่หายไป", cover: "assets/cover2.png", status: "play", badge: "ตอน 1-4" },
+  { key: "s3", title: "ฤดูร้อนสุดท้าย", cover: "assets/cover3.png", status: "soon", badge: "เร็วๆ นี้" },
+  { key: "s4", title: "ฤดูใบไม้ร่วงสีแดง", cover: "assets/cover4.png", status: "soon", badge: "เร็วๆ นี้" },
+];
+const menuEl = document.getElementById("menu");
+const toastEl = document.getElementById("toast");
+
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  setTimeout(() => toastEl.classList.remove("show"), 1800);
+}
+function buildMenu() {
+  const grid = document.getElementById("menu-grid");
+  grid.innerHTML = "";
+  for (const st of STORIES) {
+    const card = document.createElement("div");
+    card.className = "story-card" + (st.status === "play" ? "" : " locked");
+    card.innerHTML =
+      `<img src="${st.cover}" alt="">
+       <div class="veil"></div>
+       <div class="info">
+         <span class="name">${st.title}</span>
+         <span class="badge ${st.status}">${st.badge}</span>
+       </div>`;
+    card.onclick = () => {
+      if (st.status === "play") startGame(st.key);
+      else showToast("✨ " + st.title + " — เร็วๆ นี้");
+    };
+    grid.appendChild(card);
+  }
+}
+function showMenu() {
+  clearDynamic();
+  clearInterval(typeTimer);
+  captionEl.style.display = "none";
+  endingEl.style.display = "none";
+  epEl.style.display = "none";
+  hudEl.style.display = "none";
+  bgmAudio.pause();
+  currentBgmKey = null;
+  menuEl.style.display = "flex";
+}
+
+function startGame(key) {
+  curKey = key;
+  S = GAMES[key];
+  flags = S.flags0();
+  menuEl.style.display = "none";
+  hudEl.style.display = "";
+  bgEl.src = S.bgDefault;
+  renderHUD();
+  gotoScene(S.start);
+}
+
+function restart() {
+  flags = S.flags0();
+  bgEl.src = S.bgDefault;
+  renderHUD();
+  gotoScene(S.start);
+}
+
+// ===== ฉากหลัก =====
 function gotoScene(id) {
   currentSceneId = id;
   clearDynamic();
   clearInterval(typeTimer);
-  const scene = STORY[id];
+  const story = S.story();
+  const scene = story[id];
 
   if (scene.dynamic === "ending") {
-    const e = computeEnding(flags);
-    setBgm(e.title === "หนาว" ? "storm" : e.title === "สดใส" || e.title === "บ้านที่สอง" ? "warm" : "main");
+    const e = S.compute(flags);
+    if (curKey === "s1")
+      setBgm(e.title === "หนาว" ? "storm" : e.title === "สดใส" || e.title === "บ้านที่สอง" ? "warm" : "main");
+    else setBgm("main");
     captionEl.style.display = "none";
     if (e.bg) bgEl.src = e.bg;
     applyFx(e.fx);
@@ -343,13 +302,10 @@ function gotoScene(id) {
     const text = document.createElement("div");
     text.textContent = e.text;
     const btn = document.createElement("button");
-    btn.id = "restart";
     btn.textContent = "🔄 อีกครั้ง";
     btn.onclick = restart;
     const home = document.createElement("button");
-    home.id = "restart";
     home.style.background = "rgba(255,255,255,.14)";
-    home.style.color = "var(--text)";
     home.textContent = "🏠 เลือกเรื่องอื่น";
     home.onclick = showMenu;
     endingEl.append(title, text, btn, home);
@@ -359,10 +315,9 @@ function gotoScene(id) {
   endingEl.style.display = "none";
   if (scene.bg) bgEl.src = scene.bg;
   applyFx(scene.fx);
-  setBgm(SCENE_BGM[id] || "main");
-  if (SCENE_SFX[id]) playSfx(SCENE_SFX[id]);
+  setBgm(S.bgm[id] || "main");
+  if (S.sfx[id]) playSfx(S.sfx[id]);
 
-  // ตัวละคร/วัตถุประกอบขึ้นทันที ไม่ให้จอว่างระหว่างพิมพ์ข้อความ
   (scene.actors || []).forEach((a) => {
     const el = document.createElement("div");
     el.className = "actor" + (a.shiver ? " shiver" : "");
@@ -373,8 +328,10 @@ function gotoScene(id) {
     gameEl.appendChild(el);
   });
 
-  // วัตถุที่คลิกได้จะโผล่หลังข้อความอ่านจบ เพื่อไม่ให้กดข้ามเนื้อเรื่อง
   startCaption(scene.caption, () => {
+    // จบตอน → การ์ดคลิฟแฮงเกอร์
+    if (scene.epEnd) { showEpisodeCard(scene.epEnd, scene.epEnd.next); return; }
+
     (scene.hotspots || []).forEach((h) => {
       const ok = meetsRequirement(h.requires);
       const el = document.createElement("div");
@@ -389,8 +346,9 @@ function gotoScene(id) {
         if (!ok) return;
         playSfx("assets/audio/sfx-click.mp3");
         if (h.effects) {
-          flags.warmth = Math.max(0, flags.warmth + (h.effects.warmth || 0));
-          flags.trust = Math.max(0, flags.trust + (h.effects.trust || 0));
+          for (const [k, v] of Object.entries(h.effects)) {
+            flags[k] = Math.max(0, flags[k] + v);
+          }
         }
         if (h.set) Object.assign(flags, h.set);
         renderHUD();
@@ -405,14 +363,5 @@ function gotoScene(id) {
   });
 }
 
-function restart() {
-  flags = { warmth: 0, trust: 0, helpedAunt: false, knowsBox: false, openedBox: false, auntRescue: false };
-  bgEl.src = "assets/bg-house-portrait.png";
-  renderHUD();
-  gotoScene("start");
-}
-
-renderHUD();
-gotoScene("start");
 buildMenu();
 showMenu();

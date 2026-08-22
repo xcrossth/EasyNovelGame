@@ -277,6 +277,26 @@
   }
   #toast.show { opacity: 1; }
 
+  /* จอดำจบตอน (คลิฟแฮงเกอร์) */
+  #episode {
+    position: absolute;
+    inset: 0;
+    z-index: 55;
+    background: radial-gradient(ellipse at center, #10151f 0%, #05070c 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding: 30px;
+    cursor: pointer;
+  }
+  #episode .ep-label { color: var(--muted); font-size: .85rem; letter-spacing: 4px; }
+  #episode .ep-title { color: var(--accent); font-size: clamp(1.4rem, 6vw, 2rem); font-weight: 700; }
+  #episode .ep-teaser { color: var(--text); font-size: 1rem; line-height: 1.9; max-width: 480px; }
+  #episode .ep-hint { color: var(--muted); font-size: .85rem; margin-top: 18px; animation: bounce-hint 1.2s ease-in-out infinite; }
+
   /* ฉากจบ */
   #ending {
     position: absolute;
@@ -436,12 +456,18 @@
   <img id="bg" src="assets/bg-house-portrait.png" alt="">
   <div id="overlay-cold"></div>
   <div id="hud" style="display:none">
-    <div class="stat">🔥<span class="dots" id="hud-warmth"></span></div>
-    <div class="stat">💛<span class="dots" id="hud-trust"></span></div>
+    <div class="stat" id="hud-1"></div>
+    <div class="stat" id="hud-2"></div>
     <div class="stat" id="mute" style="cursor:pointer">🔊</div>
   </div>
   <div id="caption"></div>
   <div id="ending" style="display:none"></div>
+  <div id="episode" style="display:none">
+    <div class="ep-label">ตอนต่อไป</div>
+    <div class="ep-title"></div>
+    <div class="ep-teaser"></div>
+    <div class="ep-hint">แตะเพื่อดูต่อ</div>
+  </div>
   <div id="menu">
     <h1>✦ นิยายชุดฤดูกาล ✦</h1>
     <div class="subtitle">เลือกเรื่องที่อยากอ่าน... แล้วใช้ใจเลือก</div>
@@ -450,6 +476,7 @@
   <div id="toast"></div>
 </div>
 <script src="story.js"></script>
+<script src="story2.js"></script>
 <script src="game.js"></script>
 </body>
 </html>
