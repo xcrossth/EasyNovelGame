@@ -16,6 +16,9 @@ const IMG_LABELS = {
   "assets/s2/ic-broom.png": "ทำงานบ้าน", "assets/s2/ic-door.png": "เปิดประตู",
   "assets/s2/item-file.png": "แฟ้มเอกสาร", "assets/s2/item-photo.png": "รูปถ่ายเก่า",
   "assets/s2/item-diary.png": "สมุดไดอารี่", "assets/s2/item-bracelet.png": "กำไลทองหูกระดิ่ง",
+  "assets/s3/item-bowl.png": "ถ้วยเครื่องกระเบื้อง", "assets/s3/item-paddle.png": "ป้ายประมูล",
+  "assets/s3/item-seal.png": "ตราหยกมังกร", "assets/s4/item-coin.png": "เหรียญพลังระบบ",
+  "assets/s4/item-memory.png": "กล่องความทรงจำ", "assets/s4/item-leaf.png": "ใบไม้ดิจิทัล",
 };
 function hotspotLabel(h) {
   return h.label || IMG_LABELS[h.img] || "แตะเพื่อไปต่อ";
@@ -79,6 +82,47 @@ const GAMES = {
       s2_e9_kong: "assets/audio/s2-heels.mp3",
     },
     bgmDefault: "s2lux",
+  },
+  s3: {
+    story: () => STORY3,
+    compute: (f) => computeEnding3(f),
+    start: "s3_start",
+    flags0: () => ({ eye: 0, root: 0, hasLetter: false, friendZhen: false, allyYu: false, workBoss: false, hasPhoto: false, knowsKiller: false, forgave: false, chooseMaster: false, chooseFarm: false, chooseLove: false }),
+    hud: [["assets/ui/eye.png", "eye"], ["assets/ui/grass.png", "root"]],
+    dotsMax: 12,
+    coldOverlay: false,
+    bgDefault: "assets/s3/ricefield.png",
+    bgm: {
+      s3_e3_boss: "crisis", s3_e6_start: "crisis", s3_e7_start: "crisis", s3_e7_rage: "crisis",
+      s3_e9_start: "crisis", s3_e10_start: "crisis", s3_e11_start: "s2sad",
+      s3_e12_master: "warm", s3_e12_farm: "warm", s3_e12_love: "s2sad",
+    },
+    sfx: {
+      s3_e1_thunder: "assets/audio/s3-eye.mp3",
+      s3_e2_tang: "assets/audio/s3-eye.mp3",
+      s3_e10_twist: "assets/audio/s2-heartbeat.mp3",
+    },
+    bgmDefault: "s3bgm",
+  },
+  s4: {
+    story: () => STORY4,
+    compute: (f) => computeEnding4(f),
+    start: "s4_start",
+    flags0: () => ({ power: 0, mem: 10, hasNotebook: false, purePath: false, knowsShi: false, trueFriend: false, allyShi: false, chooseDestroy: false, chooseRule: false, chooseTalk: false }),
+    hud: [["assets/ui/star.png", "power"], ["assets/ui/leaf.png", "mem"]],
+    dotsMax: 12,
+    coldOverlay: false,
+    bgDefault: "assets/s4/redleaf.png",
+    bgm: {
+      s4_e6_start: "crisis", s4_e9_start: "crisis", s4_e10_start: "crisis",
+      s4_e2_fee: "s2sad", s4_e8_start: "s2sad", s4_e12_truth: "s2sad",
+    },
+    sfx: {
+      s4_e1_accept: "assets/audio/s4-notif.mp3",
+      s4_e6_start: "assets/audio/s4-static.mp3",
+      s4_e10_start: "assets/audio/s4-static.mp3",
+    },
+    bgmDefault: "s4bgm",
   },
 };
 
@@ -225,6 +269,8 @@ const BGM = {
   s2drama: "assets/audio/s2-bgm-drama.mp3",
   s2sad: "assets/audio/s2-bgm-sad.mp3",
   s2lux: "assets/audio/s2-bgm-lux.mp3",
+  s3bgm: "assets/audio/s3-bgm.mp3",
+  s4bgm: "assets/audio/s4-bgm.mp3",
 };
 let bgmAudio = new Audio();
 bgmAudio.loop = true;
@@ -266,8 +312,8 @@ document.body.addEventListener("pointerdown", () => {
 const STORIES = [
   { key: "s1", title: "ฤดูหนาวปีนั้น", cover: "assets/cover1.png", status: "play", badge: "เล่นได้เลย" },
   { key: "s2", title: "ฤดูฝนที่หายไป", cover: "assets/cover2.png", status: "play", badge: "ครบ 12 ตอน" },
-  { key: "s3", title: "ฤดูร้อนสุดท้าย", cover: "assets/cover3.png", status: "soon", badge: "เร็วๆ นี้" },
-  { key: "s4", title: "ฤดูใบไม้ร่วงสีแดง", cover: "assets/cover4.png", status: "soon", badge: "เร็วๆ นี้" },
+  { key: "s3", title: "ฤดูร้อนสุดท้าย", cover: "assets/cover3.png", status: "play", badge: "ตาทิพย์ · 12 ตอน" },
+  { key: "s4", title: "ฤดูใบไม้ร่วงสีแดง", cover: "assets/cover4.png", status: "play", badge: "ระบบโกง · 12 ตอน" },
 ];
 const menuEl = document.getElementById("menu");
 const toastEl = document.getElementById("toast");
@@ -404,6 +450,11 @@ function gotoScene(id) {
   setBgm(S.bgm[id] || S.bgmDefault || "main");
   if (S.sfx[id]) playSfx(S.sfx[id]);
 
+  // กล่องข้อความระบบ (เรื่อง 4): สไตล์ sci-fi + เส้นบรรทัดระบบเพิ่มเติม
+  captionEl.classList.toggle("sys", !!scene.sysbox);
+  let capText = scene.caption || "";
+  if (scene.syslines) capText += "\n\n" + scene.syslines.join("\n");
+
   (scene.actors || []).forEach((a) => {
     const el = document.createElement("div");
     el.className = "actor" + (a.shiver ? " shiver" : "");
@@ -414,7 +465,7 @@ function gotoScene(id) {
     gameEl.appendChild(el);
   });
 
-  startCaption(scene.caption, () => {
+  startCaption(capText, () => {
     // จบตอน → การ์ดคลิฟแฮงเกอร์
     if (scene.epEnd) { showEpisodeCard(scene.epEnd, scene.epEnd.next); return; }
 

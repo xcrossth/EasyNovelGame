@@ -1,0 +1,681 @@
+{
+ "s2_start": {
+  "caption": "คฤหาสน์รัตนวงศ์ — บ้านหลังใหญ่ที่สุดของเมือง",
+  "ending": false,
+  "nexts": [
+   "s2_e1_chores",
+   "s2_e1_intro2",
+   "s2_e1_intro2"
+  ]
+ },
+ "s2_e1_chores": {
+  "caption": "ห้องเล็กๆ ใต้หลังคา ชั้นสุดท้ายของคฤหาสน์ — โลกของฉัน",
+  "ending": false,
+  "nexts": [
+   "s2_e1_mali"
+  ]
+ },
+ "s2_e1_intro2": {
+  "caption": "ห้องนั่งเล่นที่ฉันเช็ดมันมาทุกวัน แต่ไม่เคยได้นั่ง",
+  "ending": false,
+  "nexts": [
+   "s2_e1_mali"
+  ]
+ },
+ "s2_e1_mali": {
+  "caption": "มาลีรัตน์ยืนอยู่กลางบันไดหินอ่อน ชุดนอนไหมพรมราคาหลักแสน หน้าบึ้ง",
+  "ending": false,
+  "nexts": [
+   "s2_e1_mali_calm",
+   "s2_e1_mali_fight",
+   "s2_e1_mali_silent"
+  ]
+ },
+ "s2_e1_mali_calm": {
+  "caption": "\"ไม่เห็นค่ะ คุณหลี\" ฉันตอบเสียงเรียบที่สุด",
+  "ending": false,
+  "nexts": [
+   "s2_e1_khunying"
+  ]
+ },
+ "s2_e1_mali_fight": {
+  "caption": "\"ไม่ได้เก็บค่ะ\" ฉันเงยหน้าขึ้นมองตาเธอตรงๆ \"และถ้าคุณหลีหาไม่เจอ",
+  "ending": false,
+  "nexts": [
+   "s2_e1_khunying"
+  ]
+ },
+ "s2_e1_mali_silent": {
+  "caption": "ฉันก้มหน้านิ่ง ไม่ตอบอะไร",
+  "ending": false,
+  "nexts": [
+   "s2_e1_khunying"
+  ]
+ },
+ "s2_e1_khunying": {
+  "caption": "คุณหญิงให้ยกรถเข็นไปห้องรับแขก สั่งทุกคนออกไป ยกเว้น...",
+  "ending": false,
+  "nexts": [
+   "s2_e1_cliff"
+  ]
+ },
+ "s2_e1_cliff": {
+  "caption": "ฉันเดินเข้าไปใกล้ คุณหญิงจ้องหน้าฉันนานมาก... จนฉันแทบถอยหนี",
+  "ending": false,
+  "nexts": [
+   "s2_e2_start"
+  ]
+ },
+ "s2_e2_start": {
+  "caption": "คืนนั้นฉันแทบไม่หลับ",
+  "ending": false,
+  "nexts": [
+   "s2_e2_box"
+  ]
+ },
+ "s2_e2_box": {
+  "caption": "กล่องไม้เก่าเปิดออก... ข้างในคือชีวิตทั้งชีวิตของแม่",
+  "ending": false,
+  "nexts": [
+   "s2_e2_photo",
+   "s2_e2_paperboat"
+  ]
+ },
+ "s2_e2_photo": {
+  "caption": "ในซองคือรูปถ่ายเก่าสภาพพับยับ",
+  "ending": false,
+  "nexts": [
+   "s2_e2_paperboat",
+   "s2_e2_paperboat"
+  ]
+ },
+ "s2_e2_paperboat": {
+  "caption": "ฉันหยิบเรือกระดาษครึ่งลำขึ้นมาดู แล้วพบว่ากระดาษที่แม่ใช้พับ...",
+  "ending": false,
+  "nexts": [
+   "s2_e2_mali_saw"
+  ]
+ },
+ "s2_e2_mali_saw": {
+  "caption": "เช้ามืดวันรุ่งขึ้น ฉันเอาของทั้งหมดซ่อนไว้ใต้ที่นอนแล้วลงไปทำงาน",
+  "ending": false,
+  "nexts": [
+   "s2_e2_confront",
+   "s2_e2_confront",
+   "s2_e2_walkaway"
+  ]
+ },
+ "s2_e2_confront": {
+  "caption": "\"คุณหลีกลัวอะไรเหรอ\" ฉันถามกลับ ไม่ถอย",
+  "ending": false,
+  "nexts": [
+   "s2_e2_cliff",
+   "s2_e2_cliff_risk"
+  ]
+ },
+ "s2_e2_walkaway": {
+  "caption": "ฉันเดินหนีขึ้นชั้นบนก่อน ไม่ตอบอะไร",
+  "ending": false,
+  "nexts": [
+   "s2_e2_cliff"
+  ]
+ },
+ "s2_e2_cliff": {
+  "caption": "กลับมาถึงห้อง ฉันควักซองรูปถ่ายออกมาดูอีกครั้งในแสงเช้า",
+  "ending": false,
+  "nexts": [
+   "s2_e3_start"
+  ]
+ },
+ "s2_e2_cliff_risk": {
+  "caption": "ฉันหยิบรูปถ่ายออกมายื่นให้ดูต่อหน้า — \"แล้วอันนี้ล่ะคะ ทารกในภาพใส่กำไลอะไร?\"",
+  "ending": false,
+  "nexts": [
+   "s2_e3_start"
+  ]
+ },
+ "s2_e3_start": {
+  "caption": "ค่ำวันนั้น ฝนเริ่มตกตั้งแต่บ่ายแก่และไม่หยุด",
+  "ending": false,
+  "nexts": [
+   "s2_e3_give",
+   "s2_e3_refuse",
+   "s2_e3_lie"
+  ]
+ },
+ "s2_e3_give": {
+  "caption": "ฉันยื่นกล่องให้... ยกเว้นสองสิ่งที่ซ่อนไว้แล้ว",
+  "ending": false,
+  "nexts": [
+   "s2_e3_rain"
+  ]
+ },
+ "s2_e3_refuse": {
+  "caption": "\"ขอโทษค่ะ\" ฉันก้มหัวนิดหนึ่ง แต่เสียงไม่สั่น",
+  "ending": false,
+  "nexts": [
+   "s2_e3_rain"
+  ]
+ },
+ "s2_e3_lie": {
+  "caption": "\"ของเก่าๆ น่ะเหรอคะ\" ฉันยิ้มจางๆ \"มีแต่เรือกระดาษกับผ้าขี้ริ้วค่ะ เผาทิ้งไปเมื่อปีก่อนแล้ว\"",
+  "ending": false,
+  "nexts": [
+   "s2_e3_rain"
+  ]
+ },
+ "s2_e3_rain": {
+  "caption": "ตอนสามทุ่ม ฝนเหมือนคนเทน้ำทิ้ง",
+  "ending": false,
+  "nexts": [
+   "s2_e3_defend",
+   "s2_e3_evidence",
+   "s2_e3_leave"
+  ]
+ },
+ "s2_e3_defend": {
+  "caption": "\"เรียกตำรวจเลยค่ะ\" ฉันพูดดังเดียดจนห้องกรีดเข้าไปทั้งโถง",
+  "ending": false,
+  "nexts": [
+   "s2_e3_cliff"
+  ]
+ },
+ "s2_e3_evidence": {
+  "caption": "\"ก่อนอื่น...\" ฉันชูซองเอกสารในมือขึ้น",
+  "ending": false,
+  "nexts": [
+   "s2_e3_cliff"
+  ]
+ },
+ "s2_e3_leave": {
+  "caption": "ฉันไม่แยแส เดินขึ้นห้องไปหยิบกระเป๋าผ้าใบใบเดียวของตัวเอง",
+  "ending": false,
+  "nexts": [
+   "s2_e3_cliff"
+  ]
+ },
+ "s2_e3_cliff": {
+  "caption": "ฉันยืนกลางฝน หนึ่งนาที... สองนาที... เสื้อผ้าเปียกโชกทั้งตัว",
+  "ending": false,
+  "nexts": [
+   "s2_e4_start"
+  ]
+ },
+ "s2_e4_start": {
+  "caption": "สำนักงานชั้นสี่สิบของ \"ธีรกิจ\" — หน้าต่างกระจกเต็มผนังมองเห็นไฟเมืองทั้งหมด",
+  "ending": false,
+  "nexts": [
+   "s2_e4_talk",
+   "s2_e4_talk",
+   "s2_e4_talk"
+  ]
+ },
+ "s2_e4_talk": {
+  "caption": "\"คุณรู้เรื่องอะไรมากแค่ไหน\" ฉันถามตรงๆ",
+  "ending": false,
+  "nexts": [
+   "s2_e4_file",
+   "s2_e4_deal"
+  ]
+ },
+ "s2_e4_file": {
+  "caption": "เขาหยิบแฟ้มหนังสีดำวางลงบนโต๊ะ เปิดออกตรงหน้าฉัน",
+  "ending": false,
+  "nexts": [
+   "s2_e4_deal"
+  ]
+ },
+ "s2_e4_deal": {
+  "caption": "\"ฉันเสนอข้อตกลง\" ธีรเดชพับแฟ้มปิด",
+  "ending": false,
+  "nexts": [
+   "s2_e4_cliff",
+   "s2_e4_independent"
+  ]
+ },
+ "s2_e4_independent": {
+  "caption": "ฉันมองมือเขา... แล้ววางมือลงบนโต๊ะแทนที่จะจับ",
+  "ending": false,
+  "nexts": [
+   "s2_e4_cliff"
+  ]
+ },
+ "s2_e4_cliff": {
+  "caption": "รุ่งเช้า ฝนหยุดแล้ว ฉันยืนหน้าคฤหาสน์รัตนวงศ์อีกครั้ง",
+  "ending": false,
+  "nexts": [
+   "s2_e5_start"
+  ]
+ },
+ "s2_e5_start": {
+  "caption": "เช้าวันนั้น ฉันกลับมายืนหน้าคฤหาสน์รัตนวงศ์อีกครั้ง",
+  "ending": false,
+  "nexts": [
+   "s2_e5_manager"
+  ]
+ },
+ "s2_e5_manager": {
+  "caption": "ผู้ที่มาเปิดประตูคือ เสธ.ประเสริฐ ผู้จัดการบ้าน คนที่อยู่ในบ้านนี้มาก่อนฉันเกิด",
+  "ending": false,
+  "nexts": [
+   "s2_e5_kitchen"
+  ]
+ },
+ "s2_e5_kitchen": {
+  "caption": "ระหว่างรอ ฉันแวะครัวหาน้ำดื่ม — และเจอคนเก่าที่คุ้นเคยที่สุดในบ้านหลังนี้",
+  "ending": false,
+  "nexts": [
+   "s2_e5_ploy_help",
+   "s2_e5_ploy_cold",
+   "s2_e5_ploy_cold"
+  ]
+ },
+ "s2_e5_ploy_help": {
+  "caption": "\"พลอยฟังนะ\" ฉันกุมมือเธอ \"ครั้งนี้พี่กลับมาไม่ใช่มาทำงานบ้าน แต่มารับบางอย่างคืน",
+  "ending": false,
+  "nexts": [
+   "s2_e5_mali_see"
+  ]
+ },
+ "s2_e5_ploy_cold": {
+  "caption": "\"ไม่มีอะไรมาก\" ฉันยิ้มบางๆ \"แค่กลับมาทำงาน ตำแหน่งใหม่\"",
+  "ending": false,
+  "nexts": [
+   "s2_e5_mali_see"
+  ]
+ },
+ "s2_e5_mali_see": {
+  "caption": "ฉันเดินขึ้นบันไดไปห้องคุณหญิง และเจอเข้าเต็มๆ — มาลีรัตน์กำลังลงมาจากชั้นบน",
+  "ending": false,
+  "nexts": [
+   "s2_e5_talkback",
+   "s2_e5_humble"
+  ]
+ },
+ "s2_e5_talkback": {
+  "caption": "\"กลับมาเอาของที่ควรเป็นของฉัน\" ฉันตอบเสียงเรียบที่สุด แล้วเดินผ่านเธอไปขึ้นบันได",
+  "ending": false,
+  "nexts": [
+   "s2_e5_khunying"
+  ]
+ },
+ "s2_e5_humble": {
+  "caption": "\"มาทำงานค่ะคุณหลี\" ฉันก้มหัวนิดหนึ่ง แบบสาวใช้ที่ยังรู้จักหน้าที่",
+  "ending": false,
+  "nexts": [
+   "s2_e5_khunying"
+  ]
+ },
+ "s2_e5_khunying": {
+  "caption": "ห้องของคุณหญิงชั้นสอง — หอมกลิ่นดินสอจีนและยาหม่อง",
+  "ending": false,
+  "nexts": [
+   "s2_e5_cliff"
+  ]
+ },
+ "s2_e5_cliff": {
+  "caption": "\"คุณหญิงคะ หนูพร้อมตอบทุกคำถาม\"",
+  "ending": false,
+  "nexts": [
+   "s2_e6_start"
+  ]
+ },
+ "s2_e6_start": {
+  "caption": "มือฉันสั่นเล็กน้อยขณะหยิบกำไลทองหูกระดิ่งออกจากกระเป๋า",
+  "ending": false,
+  "nexts": [
+   "s2_e6_plan"
+  ]
+ },
+ "s2_e6_plan": {
+  "caption": "คืนนั้นคุณหญิงให้ยกรถเข็นมามุมเตาผิง คุยกันฉันและเธอสองคน",
+  "ending": false,
+  "nexts": [
+   "s2_e6_spy",
+   "s2_e6_spy"
+  ]
+ },
+ "s2_e6_spy": {
+  "caption": "สามวันถัดมา ฉันเริ่มสังเกตเห็นบางอย่าง",
+  "ending": false,
+  "nexts": [
+   "s2_e6_feed",
+   "s2_e6_confront_spy",
+   "s2_e6_quiet"
+  ]
+ },
+ "s2_e6_feed": {
+  "caption": "ฉันเลือกเล่นเกม... เกมของคนที่เยอะกว่า",
+  "ending": false,
+  "nexts": [
+   "s2_e6_cliff"
+  ]
+ },
+ "s2_e6_confront_spy": {
+  "caption": "ฉันจับคุยกับเสธ.ประเสริฐตอนเขาคิดจะแอบฟังประตูห้องคุณหญิงอีกครั้ง",
+  "ending": false,
+  "nexts": [
+   "s2_e6_cliff"
+  ]
+ },
+ "s2_e6_quiet": {
+  "caption": "ฉันเลือกเงียบ และเปลี่ยนวิธี — ย้ายการคุยเรื่องสำคัญไปมุมสวนที่ไม่มีคน",
+  "ending": false,
+  "nexts": [
+   "s2_e6_cliff"
+  ]
+ },
+ "s2_e6_cliff": {
+  "caption": "คืนก่อนงานการกุศลหนึ่งวัน — ฉันเก็บกำไลเตรียมของในห้องคุณหญิง",
+  "ending": false,
+  "nexts": [
+   "s2_e7_start"
+  ]
+ },
+ "s2_e7_start": {
+  "caption": "ฉันพุ่งตัวไปแย่ง... มาดามศิริปล่อยมือ ยิ้มเย็น",
+  "ending": false,
+  "nexts": [
+   "s2_e7_garage"
+  ]
+ },
+ "s2_e7_garage": {
+  "caption": "ฉันตามรอยเขาไปจนถึงห้องพักหลังโรงรถ",
+  "ending": false,
+  "nexts": [
+   "s2_e7_gentle",
+   "s2_e7_press",
+   "s2_e7_wait"
+  ]
+ },
+ "s2_e7_gentle": {
+  "caption": "ฉันนั่งลงข้างเตียงเขา ไม่ถามอะไรเลยสักคำ",
+  "ending": false,
+  "nexts": [
+   "s2_e7_hurt"
+  ]
+ },
+ "s2_e7_press": {
+  "caption": "\"พี่วิชัย หนูรู้ว่าพี่รู้ทุกอย่าง\" ฉันเสียงแข็ง",
+  "ending": false,
+  "nexts": [
+   "s2_e7_hurt"
+  ]
+ },
+ "s2_e7_wait": {
+  "caption": "ฉันไม่รีบ แค่นั่งเงียบๆ รินน้ำร้อนจากกระบอกให้แกดื่ม",
+  "ending": false,
+  "nexts": [
+   "s2_e7_hurt"
+  ]
+ },
+ "s2_e7_hurt": {
+  "caption": "กำลังจะลุกออกจากห้อง... เสียงประตูโรงรถดังตามหลัง",
+  "ending": false,
+  "nexts": [
+   "s2_e7_stand",
+   "s2_e7_record"
+  ]
+ },
+ "s2_e7_stand": {
+  "caption": "ฉันยืนขวางหน้าวิชัย หันหน้าเข้าหามาดามศิริโดยตรง",
+  "ending": false,
+  "nexts": [
+   "s2_e7_cliff"
+  ]
+ },
+ "s2_e7_record": {
+  "caption": "ฉันถอยไปมุมห้อง — เปิดเสียงอัดในมือถือที่ทำไว้ลับๆ ตั้งแต่เข้าห้องนี้",
+  "ending": false,
+  "nexts": [
+   "s2_e7_cliff"
+  ]
+ },
+ "s2_e7_cliff": {
+  "caption": "คืนนั้นฉันนั่งข้างเตียงวิชัยถึงเที่ยงคืน แกหลับไปแล้ว แต่มือยังกุมมือฉันไว้",
+  "ending": false,
+  "nexts": [
+   "s2_e8_start"
+  ]
+ },
+ "s2_e8_start": {
+  "caption": "ตีสาม ฝนเริ่มตกเบาๆ ฉันเปิดสมุดบันทึกของพ่อใต้แสงเตาผิง",
+  "ending": false,
+  "nexts": [
+   "s2_e8_read"
+  ]
+ },
+ "s2_e8_read": {
+  "caption": "\"คืนนั้นภรรยาฉันคลอดลูกที่โรงพยาบาลเซนต์แมรี่ ห้องคลอดพิเศษ 8",
+  "ending": false,
+  "nexts": [
+   "s2_e8_name"
+  ]
+ },
+ "s2_e8_name": {
+  "caption": "หน้าถัดมา — กระดาษถูกฉีกครึ่ง... เหลือแค่ครึ่งเดียวของชื่อ",
+  "ending": false,
+  "nexts": [
+   "s2_e8_riddle",
+   "s2_e8_riddle"
+  ]
+ },
+ "s2_e8_riddle": {
+  "caption": "เช้ามาฉันรีบไปหาคุณหญิง เธออ่านไดอารี่แล้วนิ่งไปนานมาก",
+  "ending": false,
+  "nexts": [
+   "s2_e8_safe"
+  ]
+ },
+ "s2_e8_safe": {
+  "caption": "ฉันเดินไปหน้าหิ้งพระ ห้องเซฟโชว์ตัวเลขหกหลักรออยู่",
+  "ending": false,
+  "nexts": [
+   "s2_e8_open",
+   "s2_e8_fail"
+  ]
+ },
+ "s2_e8_open": {
+  "caption": "\"ตึก... แต๊ะ\" — ตู้เซฟยี่สิบสองปีเปิดออก",
+  "ending": false,
+  "nexts": [
+   "s2_e8_cliff"
+  ]
+ },
+ "s2_e8_fail": {
+  "caption": "ตัวเลขผิด... อีกครั้งและอีกครั้ง ห้องเซฟล็อกแน่น",
+  "ending": false,
+  "nexts": [
+   "s2_e8_cliff"
+  ]
+ },
+ "s2_e8_cliff": {
+  "caption": "เช้าวันงานการกุศลประจำปีของตระกูลรัตนวงศ์",
+  "ending": false,
+  "nexts": [
+   "s2_e9_start"
+  ]
+ },
+ "s2_e9_start": {
+  "caption": "งานการกุศลเริ่มไปได้ครึ่งชั่วโมง บอลรูมเต็มไปด้วยเสียงหัวเราะและแก้วไวน์",
+  "ending": false,
+  "nexts": [
+   "s2_e9_papa"
+  ]
+ },
+ "s2_e9_papa": {
+  "caption": "\"คุณหนึ่งฤทัยใช่ไหมคะ? ภาภา นักข่าวสำนักข่าวเศรษฐกิจ\"",
+  "ending": false,
+  "nexts": [
+   "s2_e9_papa_yes",
+   "s2_e9_papa_no"
+  ]
+ },
+ "s2_e9_papa_yes": {
+  "caption": "ฉันเล่าทุกอย่างให้ภาภาฟัง — กำไล ไดอารี่ รอยแผลเป็น",
+  "ending": false,
+  "nexts": [
+   "s2_e9_kong"
+  ]
+ },
+ "s2_e9_papa_no": {
+  "caption": "\"ขอโทษค่ะ ไม่รู้จักคุณ\" ฉันเดินหนีไปอีกมุม",
+  "ending": false,
+  "nexts": [
+   "s2_e9_kong"
+  ]
+ },
+ "s2_e9_kong": {
+  "caption": "ก่อนถึงเวที เสียงหนึ่งดังลั่นจากมุมบาร์ — คุณก้อง คู่หมั้นของมาลีรัตน์ เมาเต็มที่แล้ว",
+  "ending": false,
+  "nexts": [
+   "s2_e9_kong_2",
+   "s2_e9_kong_2"
+  ]
+ },
+ "s2_e9_kong_2": {
+  "caption": "ความวุ่นวายนั้นทำให้ทุกคนเบนสายตาไปจากเวที... พอดีกับที่ฉันต้องการ",
+  "ending": false,
+  "nexts": [
+   "s2_e9_cliff"
+  ]
+ },
+ "s2_e9_cliff": {
+  "caption": "\"ขอเวลาทุกท่านสิบนาทีค่ะ\"",
+  "ending": false,
+  "nexts": [
+   "s2_e10_start"
+  ]
+ },
+ "s2_e10_start": {
+  "caption": "ฉันเล่าตั้งแต่ต้น — รอยแผลเป็นรูปเลข 7, กำไลทองหูกระดิ่งสลักชื่อ \"ธ.ร.\"",
+  "ending": false,
+  "nexts": [
+   "s2_e10_wishai"
+  ]
+ },
+ "s2_e10_wishai": {
+  "caption": "วิชัย — ยังชุ่มโลหิตที่ศีรษะ เดินขึ้นเวทีช้าๆ โดยมีน้องพลอยพยุงไว้",
+  "ending": false,
+  "nexts": [
+   "s2_e10_half",
+   "s2_e10_record",
+   "s2_e10_final_push"
+  ]
+ },
+ "s2_e10_half": {
+  "caption": "ฉันยกครึ่งกระดาษจากตู้เซฟขึ้นให้ทุกคนเห็น — เอกสารที่พ่อซ่อนไว้ ณ ที่ๆ ฝนไม่มาถึง",
+  "ending": false,
+  "nexts": [
+   "s2_e10_twist"
+  ]
+ },
+ "s2_e10_record": {
+  "caption": "เสียงจากมือถือฉันดังก้องทั้งบอลรูม ผ่านลำโพงของงาน",
+  "ending": false,
+  "nexts": [
+   "s2_e10_twist"
+  ]
+ },
+ "s2_e10_final_push": {
+  "caption": "\"พยาน หลักฐาน คำสารภาพของคนในเหตุการณ์... ครบทุกอย่างแล้ว",
+  "ending": false,
+  "nexts": [
+   "s2_e10_twist"
+  ]
+ },
+ "s2_e10_twist": {
+  "caption": "มาดามศิริทรุดลงกับพื้น... แล้วหัวเราะทั้งน้ำตา",
+  "ending": false,
+  "nexts": [
+   "s2_e11_start"
+  ]
+ },
+ "s2_e11_start": {
+  "caption": "เสธ.ประเสริฐถอดแว่นออกเช็ดช้าๆ — หน้าคนที่หมดเกม",
+  "ending": false,
+  "nexts": [
+   "s2_e11_mali",
+   "s2_e11_mali"
+  ]
+ },
+ "s2_e11_mali": {
+  "caption": "มาลีรัตน์สั่นเทา น้ำตาไหลเป็นครั้งแรกที่ฉันเคยเห็น",
+  "ending": false,
+  "nexts": [
+   "s2_e11_mali_hand",
+   "s2_e11_police"
+  ]
+ },
+ "s2_e11_mali_hand": {
+  "caption": "ฉันยื่นมือออกไป... ช้าๆ",
+  "ending": false,
+  "nexts": [
+   "s2_e11_police"
+  ]
+ },
+ "s2_e11_police": {
+  "caption": "ตำรวจเข้ามาพร้อมหมายศาล — คดีฉ้อโกงมูลนิธิ (จากปากเมาของคุณก้องที่พร้อมใจให้การ)",
+  "ending": false,
+  "nexts": [
+   "s2_e11_cliff"
+  ]
+ },
+ "s2_e11_cliff": {
+  "caption": "คืนนั้น หลังงานเลี้ยงเลิก คุณหญิงบุญเรือนเรียกฉันเข้าห้อง",
+  "ending": false,
+  "nexts": [
+   "s2_e12_start"
+  ]
+ },
+ "s2_e12_start": {
+  "caption": "\"พินัยกรรมฉบับนี้มอบหมายส่วนแบ่งหลักของตระกูลให้ลูกสาวคนโต โดยมีเงื่อนไขเพียงข้อเดียว",
+  "ending": false,
+  "nexts": [
+   "s2_e12_heir",
+   "s2_e12_think",
+   "s2_e12_will"
+  ]
+ },
+ "s2_e12_heir": {
+  "caption": "\"ฉันยอมรับ... ในนาม ธนพร รัตนวงศ์\"",
+  "ending": false,
+  "nexts": [
+   "s2_tbc"
+  ]
+ },
+ "s2_e12_think": {
+  "caption": "ฉันเดินออกไประเบียงบ้าน มองฝนที่เริ่มตกอีกครั้ง — ฝนแบบเดียวกับคืนที่ทุกอย่างเริ่มต้น",
+  "ending": false,
+  "nexts": [
+   "s2_e12_self",
+   "s2_e12_love"
+  ]
+ },
+ "s2_e12_self": {
+  "caption": "\"ขอบคุณค่ะคุณทนาย... แต่ส่วนแบ่งหลัก ขอมอบให้มูลนิธิเด็กกำพร้าของตระกูลดีกว่าค่ะ",
+  "ending": false,
+  "nexts": [
+   "s2_tbc"
+  ]
+ },
+ "s2_e12_love": {
+  "caption": "สำนักงานชั้นสี่สิบ... ธีรเดชยังนั่งทำงานอยู่ตรงโต๊ะเดิม",
+  "ending": false,
+  "nexts": [
+   "s2_tbc"
+  ]
+ },
+ "s2_e12_will": {
+  "caption": "ฉันอ่านพินัยกรรมทีละบรรทัด... จนถึงหน้าสุดท้าย",
+  "ending": false,
+  "nexts": [
+   "s2_e12_think"
+  ]
+ },
+ "s2_tbc": {
+  "caption": "",
+  "ending": true,
+  "nexts": []
+ }
+}

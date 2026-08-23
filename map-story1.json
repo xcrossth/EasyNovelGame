@@ -1,0 +1,475 @@
+{
+ "start": {
+  "caption": "ลมหนาวหวีดผ่านช่องหลังคาที่พังยับ ปล่อยให้เกล็ดหิมะโปรยลงมาเป็นหยดๆ",
+  "ending": false,
+  "nexts": [
+   "a1_forest",
+   "a1_rooftop",
+   "a1_hug"
+  ]
+ },
+ "a1_forest": {
+  "caption": "ป่าหลังบ้านในแสงสุดท้ายของวัน เงาต้นไม้เปลือยทอดยาวบนหิมะขาว",
+  "ending": false,
+  "nexts": [
+   "a1_axe",
+   "a1_bird"
+  ]
+ },
+ "a1_axe": {
+  "caption": "ขวานเก่าของพ่อ — ฝักอยู่ใต้ตอไม้ใหญ่ ด้ามไม้เก่าแต่คมยังอยู่เหมือนเมื่อวาน",
+  "ending": false,
+  "nexts": [
+   "a1_wood_in"
+  ]
+ },
+ "a1_bird": {
+  "caption": "ก้อนขนน้อยๆ หนึ่งก้อนนิ่งอยู่กลางหิมะ เข้าใกล้ดู... มันยังหายใจแผ่วเบา",
+  "ending": false,
+  "nexts": [
+   "a1_wood_in",
+   "a1_wood_in"
+  ]
+ },
+ "a1_wood_in": {
+  "caption": "กลับถึงบ้านเมื่อแขนไหล่เย็นชาไปหมด แต่อย่างน้อยฟืนก็เต็มแขน",
+  "ending": false,
+  "nexts": [
+   "a1_kitchen",
+   "a1_mom_sick"
+  ]
+ },
+ "a1_rooftop": {
+  "caption": "ปีนขึ้นมาบนหลังคา ลมหนาวตบหน้าจนตาแฉะ นิ้วมือสั่นจนแทบจับหมุดไม่ได้",
+  "ending": false,
+  "nexts": [
+   "a1_roof_done",
+   "a1_roof_done"
+  ]
+ },
+ "a1_roof_done": {
+  "caption": "อุดรอยรั่วได้ทันพอดี ก้อนหิมะชุดแรกของคืนนี้ก็เริ่มร่วงลงมา",
+  "ending": false,
+  "nexts": [
+   "a1_kitchen",
+   "a1_kitchen"
+  ]
+ },
+ "a1_hug": {
+  "caption": "นั่งลงกอดแม่และมะลิไว้กลาง ทั้งสามแน่นกันเป็นก้อนเดียวใต้ผ้าห่มผืนเดียว",
+  "ending": false,
+  "nexts": [
+   "a1_mom_sick",
+   "a1_kitchen"
+  ]
+ },
+ "a1_mom_sick": {
+  "caption": "แม่ป่วยมาหลายวันแล้ว — ไอตอนดึก ตัวร้อน แต่ไม่เคยบอกใคร",
+  "ending": false,
+  "nexts": [
+   "a1_kitchen",
+   "a1_kitchen"
+  ]
+ },
+ "a1_kitchen": {
+  "caption": "ครัวมืดสนิท เตาดินเหลือเพียงถ่านแดงๆ ร้อนๆ เป็นจุดเดียวในบ้าน",
+  "ending": false,
+  "nexts": [
+   "a1_meal",
+   "a1_evening"
+  ]
+ },
+ "a1_meal": {
+  "caption": "ข้าวต้มร้อนๆ สองถ้วยใหญ่ ไอน้ำลอยขึ้นเต็มห้องจนเหมือนอยู่ในเมฆ",
+  "ending": false,
+  "nexts": [
+   "a1_evening",
+   "a1_talk"
+  ]
+ },
+ "a1_evening": {
+  "caption": "ค่ำแล้ว เสียงลมหวีดผ่านช่องไม้ซีกเป็นจังหวะยาวๆ น่ากลัว",
+  "ending": false,
+  "nexts": [
+   "a1_talk",
+   "a1_watch",
+   "a1_end"
+  ]
+ },
+ "a1_talk": {
+  "caption": "\"พี่คะ...\"",
+  "ending": false,
+  "nexts": [
+   "a1_watch"
+  ]
+ },
+ "a1_watch": {
+  "caption": "ยืนมองหิมะตกผ่านกระจกบานเดียวของบ้าน เงียบๆ คนเดียว",
+  "ending": false,
+  "nexts": [
+   "a1_end"
+  ]
+ },
+ "a1_end": {
+  "caption": "ผ่านคืนแรกมาได้...",
+  "ending": false,
+  "nexts": [
+   "a2_intro"
+  ]
+ },
+ "a2_intro": {
+  "caption": "วันที่สอง หิมะโปรยหนักทั้งเช้าจนไม่เห็นทางข้างนอกหน้าบ้าน",
+  "ending": false,
+  "nexts": [
+   "a2_well",
+   "a2_barn",
+   "a2_market"
+  ]
+ },
+ "a2_well": {
+  "caption": "บ่อน้ำกลางหมู่บ้านใต้หิมะชั้นหนา เชือกของกระเกลียวเกี่ยวน้ำแข็งแข็งทั้งเส้น",
+  "ending": false,
+  "nexts": [
+   "a2_well2",
+   "a2_well2"
+  ]
+ },
+ "a2_well2": {
+  "caption": "เหวี่ยงถังลงบ่อได้สำเร็จในที่สุด น้ำเย็นจัดจนมือชาไปครึ่งมือ",
+  "ending": false,
+  "nexts": [
+   "a2_noon"
+  ]
+ },
+ "a2_barn": {
+  "caption": "โรงนาเก่าที่พ่อเคยใช้เก็บเครื่องมือ บัดนี้ร้างและเต็มไปด้วยฝุ่น",
+  "ending": false,
+  "nexts": [
+   "a2_barn2",
+   "a2_barn2"
+  ]
+ },
+ "a2_barn2": {
+  "caption": "ดึงผ้าใบเก่าออกจากมุมห้อง... แล้วต้องหยุดนิ่ง",
+  "ending": false,
+  "nexts": [
+   "a2_noon",
+   "a2_noon"
+  ]
+ },
+ "a2_market": {
+  "caption": "ตลาดเช้าที่มีแค่สามคันรถ หมอกหนาจนมองไปได้แค่สิบก้าว",
+  "ending": false,
+  "nexts": [
+   "a2_noon",
+   "a2_noon"
+  ]
+ },
+ "a2_noon": {
+  "caption": "กลับถึงบ้านตอนเที่ยง หิมะเริ่มหนักขึ้นเรื่อยๆ ฟ้ามืดลงผิดปกติ",
+  "ending": false,
+  "nexts": [
+   "a2_help",
+   "a2_chore"
+  ]
+ },
+ "a2_help": {
+  "caption": "วิ่งข้ามไปช่วยปัดหิมะจนเสร็จ มือเย็นแทบไม่มีความรู้สึก",
+  "ending": false,
+  "nexts": [
+   "a2_knock"
+  ]
+ },
+ "a2_chore": {
+  "caption": "ทำงานบ้านฝั่งตัวเอง — เก็บฟืนเพิ่มจากใต้ถุน หุงข้าวเย็นไว้",
+  "ending": false,
+  "nexts": [
+   "a2_knock"
+  ]
+ },
+ "a2_knock": {
+  "caption": "เย็นมาถึง ลมเริ่มแรงขึ้น... แล้วก็มีเสียงนั้น",
+  "ending": false,
+  "nexts": [
+   "a2_ask"
+  ]
+ },
+ "a2_ask": {
+  "caption": "เปิดประตูออก ป้าแก้มยืนอยู่ ตัวสั่น ผ้าพันคาเปียกฝนหิมะ",
+  "ending": false,
+  "nexts": [
+   "a2_talk",
+   "a2_refuse"
+  ]
+ },
+ "a2_talk": {
+  "caption": "ป้ารับเกลือไปด้วยรอยยิ้มกว้าง แล้วถอดรองเท้าเปียกๆ นั่งลงข้างเตาไฟ",
+  "ending": false,
+  "nexts": [
+   "a2_boxhint",
+   "a2_dadstory"
+  ]
+ },
+ "a2_dadstory": {
+  "caption": "\"พ่อแกน่ะ...\" ป้าหัวเราะเบาๆ น้ำตาคลอเบ้า",
+  "ending": false,
+  "nexts": [
+   "a2_boxhint",
+   "a2_dream"
+  ]
+ },
+ "a2_boxhint": {
+  "caption": "\"นี่มะลิ... ป้าขอบอกอะไรหน่อยได้มั้ย\"",
+  "ending": false,
+  "nexts": [
+   "a2_dream"
+  ]
+ },
+ "a2_refuse": {
+  "caption": "\"งั้นเหรอ...\" ป้าพยักหน้าเงียบๆ ยิ้มแบบเข้าใจ",
+  "ending": false,
+  "nexts": [
+   "a2_dream"
+  ]
+ },
+ "a2_dream": {
+  "caption": "ดึกแล้ว บ้านเงียบสนิทเหลือแค่เสียงลม...",
+  "ending": false,
+  "nexts": [
+   "a2_comfort",
+   "a2_end"
+  ]
+ },
+ "a2_comfort": {
+  "caption": "\"มะลิฟังนะ...\" ปัดน้ำตาน้องเบาๆ",
+  "ending": false,
+  "nexts": [
+   "a2_end"
+  ]
+ },
+ "a2_end": {
+  "caption": "วันที่สาม เช้ามืด บ้านเงียบผิดปกติ... เกินไป",
+  "ending": false,
+  "nexts": [
+   "a3_crisis"
+  ]
+ },
+ "a3_crisis": {
+  "caption": "แม่กำเริบ! นั่งก้มหน้ากุมอก หายใจแรงจนพูดไม่ออก",
+  "ending": false,
+  "nexts": [
+   "a3_path",
+   "a3_aunt_door",
+   "a3_herb_search"
+  ]
+ },
+ "a3_path": {
+  "caption": "วิ่งออกจากบ้านมาได้ครึ่งทาง หิมะเริ่มทับถมหนาขึ้นทุกนาที",
+  "ending": false,
+  "nexts": [
+   "a3_river",
+   "a3_clinic"
+  ]
+ },
+ "a3_river": {
+  "caption": "ริมแม่น้ำที่กลายเป็นแผ่นน้ำแข็งขาวโพลนกว้างใหญ่",
+  "ending": false,
+  "nexts": [
+   "a3_clinic",
+   "a3_clinic"
+  ]
+ },
+ "a3_clinic": {
+  "caption": "คลินิกประจำตำบล แสงไฟขาวส่องกลางหิมะ หมอเถื่อนยังเปิดอยู่",
+  "ending": false,
+  "nexts": [
+   "a3_return"
+  ]
+ },
+ "a3_return": {
+  "caption": "กำยาแน่นในมือ วิ่งกลับทั้งที่ขาสั่นจนแทบยืนไม่ติด",
+  "ending": false,
+  "nexts": [
+   "a3_recover"
+  ]
+ },
+ "a3_aunt_door": {
+  "caption": "บ้านของป้าแก้มในเช้ามืด แสงตะเกียงหน้าประตูยังสว่างอยู่",
+  "ending": false,
+  "nexts": [
+   "a3_aunt_in"
+  ]
+ },
+ "a3_aunt_in": {
+  "caption": "\"ยาหอบป้ามีตัวยาสำรองไว้ตลอด เพราะรู้ว่าแม่แกเป็นนะ\"",
+  "ending": false,
+  "nexts": [
+   "a3_recover"
+  ]
+ },
+ "a3_herb_search": {
+  "caption": "มะลิคว้ามือพี่วิ่งออกหลังบ้าน ไปพุ่มไม้ใต้ต้นมะขาม",
+  "ending": false,
+  "nexts": [
+   "a3_gamble"
+  ]
+ },
+ "a3_gamble": {
+  "caption": "ต้มใบไม้ในหม้อดินเก่า กลิ่นขมจัดจนมะลิหน้าบูด",
+  "ending": false,
+  "nexts": [
+   "a3_recover"
+  ]
+ },
+ "a3_recover": {
+  "caption": "ค่ำนั้น แม่หลับสบายเป็นครั้งแรกในหลายคืน ไอก็ไม่กำเริบ",
+  "ending": false,
+  "nexts": [
+   "a3_momtalk",
+   "a3_end"
+  ]
+ },
+ "a3_momtalk": {
+  "caption": "\"เรื่องพ่อของเราน่ะ...\" แม่เริ่มพูด แล้วหยุด เหมือนคำไม่ยอมออกมาง่ายๆ",
+  "ending": false,
+  "nexts": [
+   "a3_end"
+  ]
+ },
+ "a3_end": {
+  "caption": "วันที่สี่ แดดอ่อนๆ ส่องเข้ามาเป็นครั้งแรกในรอดหลายวัน",
+  "ending": false,
+  "nexts": [
+   "a4_intro"
+  ]
+ },
+ "a4_intro": {
+  "caption": "\"พ่อเคยบอกมะลิน่ะคะ\" มะลิพูดช้าๆ ตอนที่ไม่ค่อยได้ยินน้ำเสียงจริงจังของน้อง",
+  "ending": false,
+  "nexts": [
+   "a4_barn_search",
+   "a5_prep"
+  ]
+ },
+ "a4_barn_search": {
+  "caption": "โรงนาเก่า อีกครั้งหนึ่ง — แต่คราวนี้ตามหาสิ่งที่พ่อซ่อนไว้จริงๆ",
+  "ending": false,
+  "nexts": [
+   "a4_open"
+  ]
+ },
+ "a4_open": {
+  "caption": "กุญแจสนิมสีน้ำตาลหมุนหนึ่งรอบ... \"แต๊ะ\"",
+  "ending": false,
+  "nexts": [
+   "a4_letter",
+   "a4_money"
+  ]
+ },
+ "a4_letter": {
+  "caption": "\"ถ้าลูกได้อ่านจดหมายนี้ แปลว่าถึงเวลาแล้ว\"",
+  "ending": false,
+  "nexts": [
+   "a4_letter2"
+  ]
+ },
+ "a4_letter2": {
+  "caption": "\"ลูกพี่... พ่อรู้ว่าแกต้องเป็นคนอ่านจดหมายนี้ก่อนใคร",
+  "ending": false,
+  "nexts": [
+   "a4_memory",
+   "a4_memory"
+  ]
+ },
+ "a4_memory": {
+  "caption": "แม่เดินมาช้าๆ นั่งลงข้างๆ แล้วเล่าต่อในสิ่งที่เหลือ",
+  "ending": false,
+  "nexts": [
+   "a4_after"
+  ]
+ },
+ "a4_money": {
+  "caption": "ถุงเงินของพ่อ — เหรียญและธนบัตรเก็บมานานหลายปี",
+  "ending": false,
+  "nexts": [
+   "a4_after",
+   "a4_after"
+  ]
+ },
+ "a4_after": {
+  "caption": "คืนนั้นบ้านเงียบ แต่ใจของทุกคนเต็มกว่าเมื่อไหร่",
+  "ending": false,
+  "nexts": [
+   "a5_prep"
+  ]
+ },
+ "a5_prep": {
+  "caption": "ข่าวพายุมาถึงบ้านตอนบ่าย — \"พายุหิมะใหญ่ที่สุดในรอบสิบปี คืนนี้\"",
+  "ending": false,
+  "nexts": [
+   "a5_intro",
+   "a5_intro"
+  ]
+ },
+ "a5_intro": {
+  "caption": "พายุมาถึงจริงๆ!",
+  "ending": false,
+  "nexts": [
+   "a5_fireout",
+   "a5_escape",
+   "a5_huddle"
+  ]
+ },
+ "a5_huddle": {
+  "caption": "ทั้งบ้านย้ายมากอดกันกลางห้อง ใต้ผ้าห่มทุกผืนที่มีในบ้าน",
+  "ending": false,
+  "nexts": [
+   "final",
+   "a5_escape",
+   "a5_dawn"
+  ]
+ },
+ "a5_fireout": {
+  "caption": "ลมกระโชกหนึ่งพัดเข้าตรงเตา — ไฟดับ!",
+  "ending": false,
+  "nexts": [
+   "a5_relight",
+   "a5_escape",
+   "a5_dawn"
+  ]
+ },
+ "a5_relight": {
+  "caption": "จุดไฟใหม่ด้วยมือที่สั่นจนไม่น่าจะจับไม้ขีดไฟได้",
+  "ending": false,
+  "nexts": [
+   "a5_dawn",
+   "a5_dawn"
+  ]
+ },
+ "a5_escape": {
+  "caption": "ออกไปในพายุ! หิมะเจ็บปวดเหมือนเข็มพันเล่มบินตามลม",
+  "ending": false,
+  "nexts": [
+   "a5_knock"
+  ]
+ },
+ "a5_knock": {
+  "caption": "\"ป้ารอแกอยู่นะ... รู้มั้ยว่าเดี๋ยวก็ต้องมา\"",
+  "ending": false,
+  "nexts": [
+   "a5_dawn"
+  ]
+ },
+ "a5_dawn": {
+  "caption": "ฟ้าสาง...",
+  "ending": false,
+  "nexts": [
+   "final"
+  ]
+ },
+ "final": {
+  "caption": "",
+  "ending": true,
+  "nexts": []
+ }
+}
