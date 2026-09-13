@@ -27,6 +27,7 @@ const STORY4 = {
 
   s4_e1_accept: {
     bg: "assets/s4/redleaf.png",
+    actors: [{ img: "assets/s4/ch-an.png", x: 50, y: 55, w: 34 }],
     caption: `ผมกดตอบรับ... แล้วทุกอย่างก็เปลี่ยน
 
 ใบไม้สีแดงรอบตัวหยุดกลางอากาศ ลอยนิ่งเหมือนโลกถูกกด pause
@@ -270,12 +271,13 @@ const STORY4 = {
     sysbox: true,
     hotspots: [
       { img: "assets/s4/item-coin.png", x: 26, y: 78, w: 12, label: "ใช้ระบบช่วยเขา (แบบทางการ)", effects: { power: 3, mem: -1 }, next: "s4_e5_save" },
-      { img: "assets/obj-heart.png", x: 70, y: 78, w: 14, label: "ช่วยด้วยตัวเอง ไม่ใช้ระบบ", effects: { mem: 2 }, set: { trueFriend: true }, next: "s4_e5_manual" },
+      { img: "assets/s4/ic-smile.png", x: 70, y: 78, w: 12, label: "ช่วยด้วยตัวเอง ไม่ใช้ระบบ", effects: { mem: 2 }, set: { trueFriend: true }, next: "s4_e5_manual" },
     ],
   },
 
   s4_e5_save: {
     bg: "assets/s4/startup.png",
+    actors: [{ img: "assets/s4/ch-ming.png", x: 50, y: 55, w: 34 }],
     caption: `ผมใช้เหรียญ "ผลักดันเหตุการณ์" — นักลงทุนรายใหม่โทรเข้ามาหมิงเย่ภายในหนึ่งชั่วโมง
 
 บริษัทรอด คนงานสิบสองคนรักษางานไว้ได้ หมิงเย่กอดผมแน่น
@@ -295,6 +297,7 @@ const STORY4 = {
 
   s4_e5_manual: {
     bg: "assets/s4/startup.png",
+    actors: [{ img: "assets/s4/ch-ming.png", x: 50, y: 55, w: 34 }],
     caption: `ผมไม่ใช้ระบบ — ผมใช้เวลาทั้งคืนช่วยเขาทำ pitch deck ใหม่ ด้วยประสบการณ์จริงของผม
 
 ไม่มีเวทมนตร์ ไม่มีข้อมูลลับ มีแค่สองหัวที่เคยฝันเดียวกันตอนมหาลัย
